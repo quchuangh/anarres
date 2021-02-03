@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.chuang.anarres</groupId>
+    <artifactId>anarres</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0.RELEASE</version>
+    <modules>
+        <module>support</module>
+        <module>core</module>
+        <module>remote-api</module>
+        <module>remote-provider</module>
+        <module>office</module>
+        <module>task</module>
+        <module>office-sys</module>
+        <module>rest-app</module>
+        <module>CA</module>
+        <module>generator</module>
+    </modules>
+
+    <parent>
+        <groupId>com.chuang.tau-ceti</groupId>
+        <artifactId>tau-ceti-parent</artifactId>
+        <version>1.0.0.RELEASE</version>
+    </parent>
+    
+</project>

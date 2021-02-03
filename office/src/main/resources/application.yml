@@ -1,0 +1,54 @@
+server:
+  port: 5250
+  servlet:
+    session:
+      timeout: 30m
+
+app:
+  name: Anarres
+  description: AnrDes
+
+mybatis-plus:
+  type-aliases-package: com.chuang.anarres.entity
+  mapper-locations: classpath*:/mapper/*.xml
+  type-enums-package: com.chuang.tauceti.support.enums,com.chuang.anarres.enums
+  configuration:
+    log-prefix: anarres.dao.log
+
+spring:
+  datasource:
+    druid:
+      # 下面为连接池的补充设置，应用到上面所有数据源中
+      # 初始化大小，最小，最大
+      # druid 配置: https://github.com/alibaba/druid/wiki/
+      initial-size: 10
+      max-active: 20
+      min-idle: 1
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      connection-properties: druid.stat.slowSqlMillis=100
+
+      url: jdbc:mysql://127.0.0.1:3306/anarres?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
+      username: root
+      password: 123123
+      driver-class-name: com.mysql.cj.jdbc.Driver
+  application:
+    name: ${app.name}
+
+
+shiro:
+  jwt:
+    secret: abcdefghijklmnopqrstuvwxyz123456789
+  web:
+    enabled: true
+  login-url: /auth/login
+  anon:
+    - /sys/i18n/client/**
+    - /sys/app-info
+    - /test/**
+logging:
+  level:
+    root: info
+    anarres:
+      dao:
+        log: debug

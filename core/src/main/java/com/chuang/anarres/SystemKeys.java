@@ -1,0 +1,15 @@
+package com.chuang.anarres;
+
+public interface SystemKeys {
+    String NEW_SITE_DAY = "NEW_SITE_DAY";
+    Integer NEW_SITE_DAY_DEFAULT = 7;
+
+    String NEW_SITE_PUBLISH_DAYS = "NEW_SITE_PUBLISH_DAYS";
+    Integer NEW_SITE_PUBLISH_DAYS_DEFAULT = 1;
+
+    String OLD_SITE_PUBLISH_DAYS = "OLD_SITE_PUBLISH_DAYS";
+    Integer OLD_SITE_PUBLISH_DAYS_DEFAULT = 7;
+
+    String ENABLE_AUTO_UPDATE_ARTICLE = "ENABLE_AUTO_UPDATE_ARTICLE";
+    Boolean ENABLE_AUTO_UPDATE_ARTICLE_DEFAULT = true;
+}
