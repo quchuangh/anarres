@@ -1,15 +1,18 @@
-package com.chuang.anarres.office.sys.model.bo;
+package com.chuang.anarres.office.sys.model.vo;
 
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Data
-@ApiModel(description = "菜单")
-public class MenuBO {
-    
+@EqualsAndHashCode(callSuper = true)
+public class MenuVO extends TreeVO {
+
+    @ApiModelProperty("菜单唯一值")
+    private String key;
+
     @ApiModelProperty("菜单标题(支持html)")
     private String text;
 
@@ -17,10 +20,7 @@ public class MenuBO {
     private String i18n;
 
     @ApiModelProperty("编号")
-    private String key;
-
-    @ApiModelProperty("父菜单")
-    private Integer parentId;
+    private String code;
 
     @ApiModelProperty("菜单路径")
     private String parents;
@@ -48,15 +48,17 @@ public class MenuBO {
     private String icon;
 
     @ApiModelProperty("ACL")
-    private String acl;
+    private AclVO acl;
 
     @ApiModelProperty("是否启用")
-    private Boolean disabled;
+    private Boolean enabled;
 
-    @ApiModelProperty("是否为快捷菜单")
-    private Boolean shortcut;
+    @ApiModelProperty("是否可以为快捷菜单")
+    private Boolean canShortcut;
 
-    @ApiModelProperty("子菜单")
-    private List<MenuBO> children;
+    @ApiModelProperty("创建时间")
+    private LocalDateTime createdTime;
 
+    @ApiModelProperty("更新时间")
+    private LocalDateTime updatedTime;
 }

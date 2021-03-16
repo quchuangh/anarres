@@ -342,7 +342,7 @@ public interface IRelationService extends IRowQueryService<Relation> {
      * @param condition2 附加条件2 可为空
      * @return 是否成功
      */
-    @Transactional(rollbackFor = {Exception.class, RuntimeException.class})
+    @Transactional(rollbackFor = RuntimeException.class)
     default boolean delete(Integer ancestor, RelationType type, @Nullable String condition1, @Nullable String condition2) {
         return remove(new Relation()
                 .setAncestor(ancestor)
@@ -351,6 +351,7 @@ public interface IRelationService extends IRowQueryService<Relation> {
                 .setCondition2(condition2)
         );
     }
+
 
     /**
      * 根据子节点来删除所有关系。

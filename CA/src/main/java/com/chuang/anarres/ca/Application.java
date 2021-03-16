@@ -2,6 +2,7 @@ package com.chuang.anarres.ca;
 
 import com.chuang.tauceti.tools.basic.FileKit;
 import com.chuang.tauceti.tools.basic.StringKit;
+import com.chuang.tauceti.tools.basic.collection.CollectionKit;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,7 +27,7 @@ import java.util.stream.Stream;
  * sudo certbot certonly --nginx //申请证书，手动配置nginx
  *
  * 更新证书
- * sudo certbot renew --dry-run
+ * sudo certbot renew //--dry-run
  *
  * 失败提示：DNS problem
  *
@@ -48,13 +49,47 @@ public class Application {
         inputData = s.toString();
     }
 
-    public static void main(String[] args) {
+    public static void fast() throws IOException {
+        int offset = 100;
+        for(int i = 1; i <= 25; i++) {
+            String dir = "cvm" + (i < 10 ? "0": "") + i;
+            Set<String> domains = FileKit.readLines("C:\\Users\\admin\\Desktop\\CVM\\dif\\" + i + ".txt", "utf-8")
+                    .stream().filter(StringKit::isNotBlank).collect(Collectors.toSet());
 
+            List<List<String>> sets = new ArrayList<>();
+
+            List<String> itemList = new ArrayList<>();
+            sets.add(itemList);
+            for(String domain: domains) {
+                if(itemList.size() >= BATCH) {
+                    itemList = new ArrayList<>();
+                    sets.add(itemList);
+                }
+                itemList.add(domain);
+            }
+
+            for (int j = 0; j < sets.size(); j++) {
+                hand(sets.get(j), dir, offset + j, true);
+            }
+        }
+        System.out.println("nohup ./run.sh < input.data &");
+        System.out.println("程序结束");
+
+    }
+
+    public static void main(String[] args) throws IOException {
+//        fast();
+        slow();
+    }
+
+    private static void slow() {
         int offset = batch();
+
         String dir = dir();
 
         Set<String> domains = inputDomains();
         boolean with3W = withWWW();
+
 
         System.out.println("您要申请证书的域名如下：");
         domains.forEach(s -> {

@@ -7,6 +7,8 @@ import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+
+import com.chuang.anarres.office.sys.entity.api.TreeModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -21,9 +23,8 @@ import lombok.experimental.Accessors;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
 @TableName("sys_menu")
-public class Menu implements Serializable {
+public class Menu implements Serializable, TreeModel {
 
     private static final long serialVersionUID=1L;
 
@@ -106,16 +107,22 @@ public class Menu implements Serializable {
     private String icon;
 
     /**
-     * ACL
+     * 权限
      */
-    @TableField("acl")
-    private String acl;
+    @TableField("permission")
+    private String permission;
 
     /**
      * 是否启用
      */
     @TableField("enabled")
     private Boolean enabled;
+
+    /**
+     * 是否支持快捷方式
+     */
+    @TableField("can_shortcut")
+    private Boolean canShortcut;
 
     /**
      * 创建人
@@ -140,6 +147,5 @@ public class Menu implements Serializable {
      */
     @TableField(value = "updated_time", fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updatedTime;
-
 
 }

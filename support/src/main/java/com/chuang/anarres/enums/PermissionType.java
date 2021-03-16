@@ -1,16 +1,18 @@
 package com.chuang.anarres.enums;
 
 public enum PermissionType {
-
-    READ_ONLY(0), LICENSABLE(1);
-
-    private final byte code;
-
-    PermissionType(int code) {
-        this.code = (byte) code;
-    }
-
-    public byte getCode() {
-        return code;
-    }
+    PAGE, FUNCTION,
+//    是否可授予别人
+//    READ_ONLY(0), s
+//    LICENSABLE(1);
+//
+//    private final byte code;
+//
+//    PermissionType(int code) {
+//        this.code = (byte) code;
+//    }
+//
+//    public byte getCode() {
+//        return code;
+//    }
 }

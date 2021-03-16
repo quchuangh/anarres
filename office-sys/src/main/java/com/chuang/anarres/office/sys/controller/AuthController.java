@@ -1,7 +1,7 @@
 package com.chuang.anarres.office.sys.controller;
 
 import com.chuang.anarres.office.sys.OfficeUtils;
-import com.chuang.anarres.office.sys.model.bo.MenuBO;
+import com.chuang.anarres.office.sys.model.bo.TreeMenuBO;
 import com.chuang.anarres.office.sys.model.vo.UsersVO;
 import com.chuang.anarres.office.sys.service.IMenuService;
 import com.chuang.anarres.office.sys.model.vo.ShiroUser;
@@ -41,7 +41,7 @@ public class AuthController {
     @ApiOperation("获取用户登录后的相关资料")
     public Result<UsersVO> users() {
         ShiroUser shiroUser = OfficeUtils.shiroUserNotNull();
-        List<MenuBO> menus = menuService.menusWithFast(shiroUser.getUsername());
+        List<TreeMenuBO> menus = menuService.userMenus(shiroUser.getUsername());
 
         UsersVO vo = new UsersVO();
         vo.setMenu(menus);

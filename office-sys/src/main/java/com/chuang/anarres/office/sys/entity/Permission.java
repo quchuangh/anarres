@@ -8,6 +8,8 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+
+import com.chuang.anarres.enums.PermissionType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -51,6 +53,9 @@ public class Permission implements Serializable {
      */
     @TableField("permission")
     private String permission;
+
+    @TableField("type")
+    private PermissionType type;
 
     /**
      * 描述

@@ -2,7 +2,7 @@ package com.chuang.anarres.office.sys.service.impl;
 
 import com.chuang.anarres.office.sys.entity.Menu;
 import com.chuang.anarres.office.sys.mapper.MenuMapper;
-import com.chuang.anarres.office.sys.model.bo.MenuBO;
+import com.chuang.anarres.office.sys.model.bo.TreeMenuBO;
 import com.chuang.anarres.office.sys.service.IMenuService;
 import com.chuang.anarres.office.sys.service.IUserFastMenuService;
 import com.chuang.tauceti.support.BiValue;
@@ -30,14 +30,14 @@ public class MenuServiceImpl extends RowQueryService<MenuMapper, Menu> implement
     @Resource private IUserFastMenuService userFastMenuService;
 
     @Override
-    public List<MenuBO> menusWithFast(String username) {
+    public List<TreeMenuBO> userMenus(String username) {
         List<Menu> list = lambdaQuery().eq(Menu::getEnabled, true).list();
         Set<String> fastMenus = userFastMenuService.findByUsername(username);
         return convert(list, fastMenus);
     }
 
 
-    private List<MenuBO> convert(Collection<Menu> menus, Set<String> fastMenus) {
+    private List<TreeMenuBO> convert(Collection<Menu> menus, Set<String> fastMenus) {
         List<Node<Menu>> tree = new NodeBuilder<Integer, Menu>().relation(menu -> {
             Integer pid = menu.getParentId();
             if(null == pid || pid == 0 || pid.equals(menu.getId())) {
@@ -49,14 +49,13 @@ public class MenuServiceImpl extends RowQueryService<MenuMapper, Menu> implement
         return convert(tree, fastMenus);
     }
 
-    private List<MenuBO> convert(List<Node<Menu>> menus, Set<String> fastMenus) {
+    private List<TreeMenuBO> convert(List<Node<Menu>> menus, Set<String> fastMenus) {
         return menus.stream()
                 .sorted(Comparator.comparingInt(o -> o.getSource().getSortRank()))
                 .map(node -> {
                     Menu m = node.getSource();
-                    MenuBO bo = ConvertKit.toBean(m, MenuBO::new);
+                    TreeMenuBO bo = ConvertKit.toBean(m, TreeMenuBO::new);
                     bo.setDisabled(!m.getEnabled());
-                    bo.setKey(m.getCode());
                     bo.setShortcut(fastMenus.contains(m.getCode()));
                     bo.setChildren(convert(node.getChildren(), fastMenus));
                     return bo;

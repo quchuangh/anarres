@@ -2,7 +2,7 @@ package com.chuang.anarres.office.sys.service.impl;
 
 import com.chuang.anarres.office.sys.event.I18nUpdatedEvent;
 import com.chuang.anarres.office.sys.service.II18nService;
-import com.chuang.anarres.office.sys.CurrentUser;
+import com.chuang.anarres.office.sys.OperatorManager;
 import com.chuang.anarres.office.sys.entity.I18n;
 import com.chuang.anarres.enums.I18nType;
 import com.chuang.anarres.enums.Language;
@@ -66,7 +66,7 @@ public class I18nServiceImpl extends RowQueryService<I18nMapper, I18n> implement
     }
 
 
-    @Resource private CurrentUser currentUser;
+    @Resource private OperatorManager currentUser;
 
 //    @Override
 //    public void onApplicationEvent(ApplicationStartedEvent event) {

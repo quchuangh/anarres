@@ -34,6 +34,8 @@ spring:
       driver-class-name: com.mysql.cj.jdbc.Driver
   application:
     name: ${app.name}
+  profiles:
+    active: dev
 
 
 shiro:

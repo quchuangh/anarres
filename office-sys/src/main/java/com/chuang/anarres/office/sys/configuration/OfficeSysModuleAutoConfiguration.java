@@ -1,11 +1,13 @@
 package com.chuang.anarres.office.sys.configuration;
 
-import com.chuang.anarres.office.sys.CurrentUser;
+import com.chuang.anarres.office.sys.OperatorManager;
 import com.chuang.tauceti.shiro.spring.web.jwt.configuration.ShiroJwtAutoConfiguration;
 import com.chuang.urras.rowquery.handlers.AutoTimeHandler;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -18,9 +20,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * 让自己比ShiroWebAutoConfiguration 先导入，并在第一行写入 @Import(ShiroConfiguration.class)
  * 用来保证 ShiroConfiguration.class 比 ShiroWebAutoConfiguration 先加载。免得内存中出现一堆实现
  */
+@Configuration
 @EnableSwagger2
 @AutoConfigureBefore(ShiroJwtAutoConfiguration.class)
-public class OfficeSysModuleAutoConfiguration {
+public class OfficeSysModuleAutoConfiguration implements WebMvcConfigurer {
     @Bean("allApisSwagger")
     public Docket allApisSwagger() {
         return new Docket(DocumentationType.SWAGGER_2)
@@ -42,13 +45,17 @@ public class OfficeSysModuleAutoConfiguration {
     }
 
     @Bean
-    public AutoTimeHandler autoTimeHandler(CurrentUser currentUser) {
-        return new AutoTimeHandler(currentUser);
+    public AutoTimeHandler autoTimeHandler() {
+        return new AutoTimeHandler(operatorManager());
     }
 
     @Bean
-    public CurrentUser currentUser() {
-        return new CurrentUser();
+    public OperatorManager operatorManager() {
+        return new OperatorManager();
     }
 
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new PageOrRestInterceptor());
+    }
 }

@@ -4,6 +4,7 @@ package com.chuang.anarres.office.sys.controller;
 import com.alibaba.fastjson.JSONAware;
 import com.alibaba.fastjson.JSONObject;
 import com.chuang.anarres.office.sys.entity.I18n;
+import com.chuang.anarres.office.sys.model.vo.MenuVO;
 import com.chuang.anarres.office.sys.service.II18nService;
 import com.chuang.anarres.enums.I18nType;
 import com.chuang.anarres.enums.Language;

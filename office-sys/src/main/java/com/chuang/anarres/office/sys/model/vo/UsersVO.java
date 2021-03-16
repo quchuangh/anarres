@@ -1,6 +1,6 @@
 package com.chuang.anarres.office.sys.model.vo;
 
-import com.chuang.anarres.office.sys.model.bo.MenuBO;
+import com.chuang.anarres.office.sys.model.bo.TreeMenuBO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -13,5 +13,5 @@ public class UsersVO {
     @ApiModelProperty("用户")
     private ShiroUser user;
     @ApiModelProperty("菜单")
-    private List<MenuBO> menu;
+    private List<TreeMenuBO> menu;
 }

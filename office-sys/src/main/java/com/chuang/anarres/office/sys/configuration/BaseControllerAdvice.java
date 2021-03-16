@@ -1,5 +1,6 @@
 package com.chuang.anarres.office.sys.configuration;
 
+import com.chuang.anarres.office.sys.exception.PageException;
 import com.chuang.tauceti.support.MapResult;
 import com.chuang.tauceti.support.Result;
 import com.chuang.tauceti.support.exception.BusinessException;
@@ -35,35 +36,33 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Slf4j
-@Aspect
 @ControllerAdvice
-public class BaseControllerAdvice implements HandlerInterceptor {
-
-    private static final String PAGE_VIEW_ATTR = "[[IS_PAGE_VIEW]]";
+public class BaseControllerAdvice {
 
     @Resource
     private MessageSource messageSource;
 
     @ExceptionHandler(value = Exception.class)
-    public Object exception(Exception exception) {
+    @ResponseBody
+    public Object exception(Exception exception) throws PageException {
         boolean isPage = HttpKit.getRequest()
-                .map(request -> (boolean)request.getAttribute(PAGE_VIEW_ATTR))
+                .map(request -> {
+                    Object b = request.getAttribute(PageOrRestInterceptor.PAGE_VIEW_ATTR);
+                    return null != b && (Boolean) b;
+                })
                 .orElse(false);//如果没有记录，默认不是页面
+        if(isPage) {
+            throw new PageException(exception);
+        }
+        return jsonException(exception);
+    }
 
-        return isPage ? pageException(exception) : jsonException(exception);
+    @ExceptionHandler(value = PageException.class)
+    public Object exception(PageException exception) {
+        return pageException((Exception) exception.getCause());
     }
 
     private Result<?> jsonException(Exception exception) {
-        log.error(exception.getMessage(), exception);
-//        if(exception instanceof PrincipalExpiredException) {
-//            Subject subject = SecurityUtils.getSubject();
-//            while(subject.isRunAs()) {
-//                subject.releaseRunAs();
-//            }
-//            return MapResult.fail( "检查到您的令牌被更新或回收，系统现已自动更新，请您再次重试。")
-//                    .data("refreshInfo", true)
-//                    .toResult();
-//        } else
         if(exception instanceof ShiroException) {
             return MapResult.fail( "您的权限不够：" + exception.getMessage())
                     .data("refreshInfo", true)
@@ -101,25 +100,6 @@ public class BaseControllerAdvice implements HandlerInterceptor {
         view.setViewName("/500");
         view.addObject("error", exception.getMessage());
         return view;
-    }
-
-
-
-    @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        if (!(handler instanceof HandlerMethod)) {
-            return true;
-        }
-        HandlerMethod hm = (HandlerMethod) handler;
-        Method method = hm.getMethod();
-
-        //Controller方法是否使用@ResponseBody注解
-        boolean b2 = !method.isAnnotationPresent(ResponseBody.class);
-        //Controller是否使用@RestController注解
-        boolean b3 = !hm.getBeanType().isAnnotationPresent(RestController.class);
-        request.setAttribute(PAGE_VIEW_ATTR, b2 && b3);
-
-        return true;
     }
 
 }
