@@ -4,7 +4,6 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -52,7 +51,7 @@ public class TreeMenuBO {
     private String icon;
 
     @ApiModelProperty("ACL")
-    private String acl;
+    private AclBO acl;
 
     @ApiModelProperty("是否启用")
     private Boolean disabled;

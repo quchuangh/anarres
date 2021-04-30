@@ -2,10 +2,8 @@ package com.chuang.anarres.office.sys.service.impl;
 
 import com.chuang.anarres.office.sys.entity.User;
 import com.chuang.anarres.office.sys.entity.UserInfo;
-import com.chuang.anarres.office.sys.service.IAuthService;
 import com.chuang.anarres.office.sys.model.vo.ShiroUser;
-import com.chuang.anarres.office.sys.service.IUserInfoService;
-import com.chuang.anarres.office.sys.service.IUserService;
+import com.chuang.anarres.office.sys.service.*;
 import com.chuang.tauceti.shiro.spring.web.jwt.realm.IShiroService;
 import com.chuang.tauceti.shiro.spring.web.jwt.realm.LoginToken;
 import com.chuang.tauceti.support.exception.BusinessException;
@@ -31,6 +29,8 @@ public class AuthService implements IAuthService, IShiroService {
 
     @Resource private IUserService userService;
     @Resource private IUserInfoService userInfoService;
+    @Resource private IRoleService roleService;
+    @Resource private IAbilityService permissionService;
 
 //=======================================    SHIRO     ======================================================
     @Override

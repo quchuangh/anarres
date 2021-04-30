@@ -26,5 +26,5 @@ public class PermissionBO {
      */
     private String description;
 
-    private PermissionType rightType;
+    private PermissionType type;
 }

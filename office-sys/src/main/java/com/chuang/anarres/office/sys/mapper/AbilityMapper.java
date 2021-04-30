@@ -1,6 +1,6 @@
 package com.chuang.anarres.office.sys.mapper;
 
-import com.chuang.anarres.office.sys.entity.Permission;
+import com.chuang.anarres.office.sys.entity.Ability;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author chuang
  * @since 2021-01-05
  */
-public interface PermissionMapper extends BaseMapper<Permission> {
+public interface AbilityMapper extends BaseMapper<Ability> {
 
 }

@@ -7,6 +7,6 @@ import com.chuang.tauceti.generator.impl.MapperXmlGen;
 public class MapperXML extends MapperXmlGen {
 
     public String outputFile(GenConfig config, TableInfo info) {
-        return "/office-base/src/main/resources" + super.outputFile(config, info);
+        return "/office-sys/src/main/resources" + super.outputFile(config, info);
     }
 }

@@ -3,12 +3,17 @@ package com.chuang.anarres.office.sys.controller;
 
 import com.alibaba.fastjson.JSONAware;
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.chuang.anarres.office.sys.controller.basic.ICreateController;
+import com.chuang.anarres.office.sys.controller.basic.IRetrieveController;
+import com.chuang.anarres.office.sys.controller.basic.UnsafeCrudController;
 import com.chuang.anarres.office.sys.entity.I18n;
 import com.chuang.anarres.office.sys.model.vo.MenuVO;
 import com.chuang.anarres.office.sys.service.II18nService;
 import com.chuang.anarres.enums.I18nType;
 import com.chuang.anarres.enums.Language;
 import com.chuang.tauceti.support.Result;
+import com.chuang.urras.rowquery.RowQuery;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,7 +32,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/sys/i18n")
 @Slf4j
-public class I18nController {
+public class I18nController extends UnsafeCrudController<I18n, II18nService> {
 
     @Resource private II18nService i18nService;
 
@@ -67,18 +72,11 @@ public class I18nController {
     }
 
 
-    @PostMapping("/save")
-    public Result<Void> save(I18nType type, String i18n, String message, Language language) {
-        i18nService.save(type, i18n, message, language);
-        return Result.success();
-    }
-
-
-
     private JSONObject toJSON(List<I18n> list) {
         JSONObject json = new JSONObject();
         list.forEach(i18n -> json.put(i18n.getI18n(), i18n.getMessage()));
         return json;
     }
+
 }
 

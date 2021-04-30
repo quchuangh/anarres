@@ -1,14 +1,15 @@
 package com.chuang.anarres.office.sys.controller;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.chuang.anarres.office.sys.entity.Menu;
 import com.chuang.anarres.office.sys.model.qo.MenuQO;
 import com.chuang.anarres.office.sys.model.qo.TreeMoveQO;
-import com.chuang.anarres.office.sys.model.vo.AclVO;
+import com.chuang.anarres.office.sys.model.bo.AclBO;
 import com.chuang.anarres.office.sys.model.vo.MenuVO;
 import com.chuang.anarres.office.sys.service.IMenuService;
 import com.chuang.tauceti.support.Result;
-import com.chuang.tauceti.tools.basic.reflect.BeanKit;
+import com.chuang.tauceti.tools.basic.StringKit;
 import com.chuang.tauceti.tools.basic.reflect.ConvertKit;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -63,7 +64,9 @@ public class MenuController {
         return Result.success(
                 menuService.list().stream().map(menu -> {
                     MenuVO vo = ConvertKit.toBean(menu, MenuVO::new);
-                    vo.setAcl(AclVO.of(null, menu.getPermission().replaceAll(" ", "").split(",")));
+                    if(StringKit.isNotBlank(menu.getAcl())) {
+                        vo.setAcl(JSONObject.parseObject(menu.getAcl(), AclBO.class));
+                    }
                     return vo;
                 })
                 .sorted(Comparator.comparing(MenuVO::getSortRank))

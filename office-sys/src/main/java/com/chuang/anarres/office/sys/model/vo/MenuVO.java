@@ -1,5 +1,6 @@
 package com.chuang.anarres.office.sys.model.vo;
 
+import com.chuang.anarres.office.sys.model.bo.AclBO;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -48,7 +49,7 @@ public class MenuVO extends TreeVO {
     private String icon;
 
     @ApiModelProperty("ACL")
-    private AclVO acl;
+    private AclBO acl;
 
     @ApiModelProperty("是否启用")
     private Boolean enabled;

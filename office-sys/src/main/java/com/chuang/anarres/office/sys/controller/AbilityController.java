@@ -2,7 +2,6 @@ package com.chuang.anarres.office.sys.controller;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -14,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2021-01-05
  */
 @RestController
-@RequestMapping("/sys/permission")
-public class PermissionController {
+@RequestMapping("/sys/ability")
+public class AbilityController {
 
 }
 

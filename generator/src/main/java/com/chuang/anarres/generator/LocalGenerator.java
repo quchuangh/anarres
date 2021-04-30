@@ -8,7 +8,6 @@ import com.baomidou.mybatisplus.generator.config.po.TableFill;
 import com.baomidou.mybatisplus.generator.engine.VelocityTemplateEngine;
 import com.chuang.anarres.enums.Language;
 import com.chuang.anarres.enums.RelationType;
-import com.chuang.anarres.enums.PermissionType;
 import com.chuang.anarres.enums.UserStatus;
 import com.chuang.tauceti.generator.GenType;
 import com.chuang.tauceti.generator.Generator;
@@ -23,6 +22,7 @@ import java.util.Scanner;
  * 本机生成代码
  */
 public class LocalGenerator {
+
 
     /**
      * <p>
@@ -51,9 +51,8 @@ public class LocalGenerator {
                 .jdbcUrl("jdbc:mysql://127.0.0.1:3306/anarres?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT")
                 .jdbcUsername("root")
                 .jdbcPassword("123123")
-
-                .rootPackage("com.chuang.anarres")
-                .nameConvert(GenType.ENTITY, "%s")
+                .rootPackage("com.chuang.anarres.office.sys")
+                .nameConvert(GenType.ENTITY, "%s")// 相加XXXXEntity后缀,填入 %sEntity
 
                 .tablePrefix("t_", "sys_")
                 .includeTables(tables)
@@ -63,7 +62,6 @@ public class LocalGenerator {
                 .enums(Gender.class, "sys_user:gender", "sys_user_info:gender")
                 .enums(Language.class, "sys_user:language", "sys_user_info:language", "sys_i18n:language")
                 .enums(RelationType.class, "sys_relation:type")
-                .enums(PermissionType.class, "sys_role_permission:permission_type")
                 .enums("sys_user", "state", UserStatus.class)
                 .global(globalConfig -> globalConfig.setFileOverride(true))
                 .strategy(strategyConfig -> strategyConfig.setTableFillList(Arrays.asList(

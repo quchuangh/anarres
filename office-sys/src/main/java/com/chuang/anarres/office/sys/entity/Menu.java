@@ -109,8 +109,8 @@ public class Menu implements Serializable, TreeModel {
     /**
      * 权限
      */
-    @TableField("permission")
-    private String permission;
+    @TableField("acl")
+    private String acl;
 
     /**
      * 是否启用

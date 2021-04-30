@@ -25,8 +25,8 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("sys_permission")
-public class Permission implements Serializable {
+@TableName("sys_ability")
+public class Ability implements Serializable {
 
     private static final long serialVersionUID=1L;
 
@@ -51,11 +51,20 @@ public class Permission implements Serializable {
     /**
      * 权限字符
      */
-    @TableField("permission")
-    private String permission;
+    @TableField("ability")
+    private String ability;
 
+    /**
+     * 权限类型
+     */
     @TableField("type")
     private PermissionType type;
+
+    /**
+     * 是否可向下授权
+     */
+    @TableField("licensable")
+    private Boolean licensable;
 
     /**
      * 描述

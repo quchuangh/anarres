@@ -1,5 +1,6 @@
-package com.chuang.anarres.office.sys.configuration;
+package com.chuang.anarres.office.sys.aspect;
 
+import com.chuang.anarres.office.sys.configuration.PageOrRestInterceptor;
 import com.chuang.anarres.office.sys.exception.PageException;
 import com.chuang.tauceti.support.MapResult;
 import com.chuang.tauceti.support.Result;

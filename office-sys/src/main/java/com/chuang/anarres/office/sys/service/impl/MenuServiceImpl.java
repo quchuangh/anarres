@@ -1,11 +1,14 @@
 package com.chuang.anarres.office.sys.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.chuang.anarres.office.sys.entity.Menu;
 import com.chuang.anarres.office.sys.mapper.MenuMapper;
+import com.chuang.anarres.office.sys.model.bo.AclBO;
 import com.chuang.anarres.office.sys.model.bo.TreeMenuBO;
 import com.chuang.anarres.office.sys.service.IMenuService;
 import com.chuang.anarres.office.sys.service.IUserFastMenuService;
 import com.chuang.tauceti.support.BiValue;
+import com.chuang.tauceti.tools.basic.StringKit;
 import com.chuang.tauceti.tools.basic.reflect.ConvertKit;
 import com.chuang.tauceti.tools.basic.tree.Node;
 import com.chuang.tauceti.tools.basic.tree.NodeBuilder;
@@ -58,6 +61,9 @@ public class MenuServiceImpl extends RowQueryService<MenuMapper, Menu> implement
                     bo.setDisabled(!m.getEnabled());
                     bo.setShortcut(fastMenus.contains(m.getCode()));
                     bo.setChildren(convert(node.getChildren(), fastMenus));
+                    if (StringKit.isNotBlank(m.getAcl())) {
+                        bo.setAcl(JSONObject.parseObject(m.getAcl(), AclBO.class));
+                    }
                     return bo;
                 })
                 .collect(Collectors.toList());

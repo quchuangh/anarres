@@ -2,10 +2,12 @@ package com.chuang.anarres.office.sys.configuration;
 
 import com.chuang.anarres.office.sys.OperatorManager;
 import com.chuang.tauceti.shiro.spring.web.jwt.configuration.ShiroJwtAutoConfiguration;
+import com.chuang.urras.rowquery.RowQueryConverter;
 import com.chuang.urras.rowquery.handlers.AutoTimeHandler;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -15,6 +17,8 @@ import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import java.util.List;
 
 /**
  * 让自己比ShiroWebAutoConfiguration 先导入，并在第一行写入 @Import(ShiroConfiguration.class)
@@ -52,6 +56,11 @@ public class OfficeSysModuleAutoConfiguration implements WebMvcConfigurer {
     @Bean
     public OperatorManager operatorManager() {
         return new OperatorManager();
+    }
+
+    @Override
+    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+        converters.add(new RowQueryConverter());
     }
 
     @Override

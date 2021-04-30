@@ -18,7 +18,7 @@ public class CheckDomain {
 
     public static void main(String[] args) throws IOException {
 
-        List<String> domains = fileDomains();
+        List<String> domains = inputDomains();
         System.out.println("======================(" + domains.size() + ")\n\n\n\n\n\n");
         for (int i = 0; i < domains.size(); i++) {
             hand(domains.get(i), i );
@@ -51,7 +51,7 @@ public class CheckDomain {
         } while(true);
 
         return inputs.stream()
-                .flatMap(Application::toStream)
+                .flatMap(SSLGenerator::toStream)
                 .filter(StringKit::isNotBlank)
                 .distinct()
                 .collect(Collectors.toList());
