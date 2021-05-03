@@ -1,4 +1,4 @@
-package com.chuang.anarres.office.sys.aspect.log.operation;
+package com.chuang.anarres.office.sys.annotations;
 
 import com.chuang.anarres.office.sys.enums.OperationTypeEnum;
 

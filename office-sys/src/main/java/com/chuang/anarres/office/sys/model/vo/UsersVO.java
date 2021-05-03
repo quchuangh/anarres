@@ -14,8 +14,4 @@ public class UsersVO {
     private ShiroUser user;
     @ApiModelProperty("菜单")
     private List<TreeMenuBO> menu;
-    @ApiModelProperty("供客户端ACL用的角色点")
-    private List<String> roles;
-    @ApiModelProperty("供客户端ACL用的权限点")
-    private List<String> abilities;
 }

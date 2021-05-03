@@ -11,4 +11,5 @@ public class Application {
         ConfigurableApplicationContext context = SpringApplication.run(SpringMvcConfiguration.class, args);
         System.out.println("bean: " + context.getBean(SpringMvcConfiguration.class));
     }
+
 }

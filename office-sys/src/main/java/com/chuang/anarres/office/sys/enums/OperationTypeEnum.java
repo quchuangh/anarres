@@ -55,7 +55,7 @@ public enum OperationTypeEnum {
         this.code = code;
     }
 
-    public static Optional<OperationTypeEnum> builder(Integer code) {
+    public static Optional<OperationTypeEnum> valueOf(Integer code) {
         return EnumSet
                 .allOf(OperationTypeEnum.class)
                 .stream()

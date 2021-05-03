@@ -46,6 +46,16 @@
             <artifactId>hibernate-validator</artifactId>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-core</artifactId>
+        </dependency>
+<!--    对象结构化查询    -->
+<!--        <dependency> -->
+<!--            <groupId>org.datayoo.moql</groupId>-->
+<!--            <artifactId>moql-parent</artifactId>-->
+<!--            <version>1.1.0</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>io.springfox</groupId>

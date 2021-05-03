@@ -7,10 +7,13 @@ import com.chuang.anarres.office.sys.service.IMenuService;
 import com.chuang.anarres.office.sys.model.vo.ShiroUser;
 import com.chuang.anarres.office.sys.service.IAbilityService;
 import com.chuang.anarres.office.sys.service.IRoleService;
+import com.chuang.tauceti.shiro.spring.web.jwt.JwtPayload;
 import com.chuang.tauceti.support.Result;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,8 +29,6 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/sys/auth")
 public class AuthController {
-
-    public static final String ACL_ROLE_PREFIX = "role:";
 
     @Resource private IMenuService menuService;
     @Resource private IRoleService roleService;
@@ -53,15 +54,15 @@ public class AuthController {
         vo.setUser(shiroUser);
 
 
-        List<String> roles = roleService.findByUsername(shiroUser.getUsername())
-                .stream()
-                .map(role -> ACL_ROLE_PREFIX + role.getCode())
-                .collect(Collectors.toList());
+//        List<String> roles = roleService.findByUsername(shiroUser.getUsername())
+//                .stream()
+//                .map(role -> ACL_ROLE_PREFIX + role.getCode())
+//                .collect(Collectors.toList());
 //        List<String> abilities = permissionService.findByUsername(shiroUser.getUsername())
 //                .stream()
 //                .map(permission -> permission.getPermission())
 //                .collect(Collectors.toList());
-        vo.setRoles(roles);
+//        vo.setRoles(roles);
 //        vo.setAbilities(abilities);
 
         return Result.success(vo);

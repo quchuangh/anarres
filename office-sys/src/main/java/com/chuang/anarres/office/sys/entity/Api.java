@@ -5,27 +5,25 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 权限表 权限
+ * 接口 
  * </p>
  *
  * @author chuang
- * @since 2021-01-05
+ * @since 2021-04-30
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("sys_ability")
-public class Ability implements Serializable {
+@TableName("sys_api")
+public class Api implements Serializable {
 
     private static final long serialVersionUID=1L;
 
@@ -36,42 +34,40 @@ public class Ability implements Serializable {
     private Integer id;
 
     /**
-     * 编号
+     * 唯一编号
      */
     @TableField("code")
     private String code;
 
     /**
-     * 名称
+     * 地址
      */
-    @TableField("name")
-    private String name;
+    @TableField("url")
+    private String url;
 
     /**
-     * 权限字符
+     * 标签
      */
-    @TableField("ability")
-    private String ability;
-
+    @TableField("label")
+    private String label;
 
     /**
-     * 是否可向下授权
-     */
-    @TableField("licensable")
-    private Boolean licensable;
-
-    /**
-     * 描述
+     * 说明
      */
     @TableField("description")
     private String description;
 
     /**
-     * 是否删除
+     * HttpMethod
      */
-    @TableField("deleted")
-    @TableLogic
-    private Boolean deleted;
+    @TableField("method")
+    private String method;
+
+    /**
+     * 是否启用
+     */
+    @TableField("enabled")
+    private Boolean enabled;
 
     /**
      * 创建人

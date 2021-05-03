@@ -15,6 +15,7 @@ import com.chuang.anarres.enums.Language;
 import com.chuang.tauceti.support.Result;
 import com.chuang.urras.rowquery.RowQuery;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;

@@ -1,5 +1,6 @@
 package com.chuang.anarres.office.sys.service.impl;
 
+import com.chuang.anarres.office.sys.OfficeUtils;
 import com.chuang.anarres.office.sys.entity.User;
 import com.chuang.anarres.office.sys.entity.UserInfo;
 import com.chuang.anarres.office.sys.model.vo.ShiroUser;
@@ -15,6 +16,7 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.codec.Hex;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
@@ -50,7 +52,11 @@ public class AuthService implements IAuthService, IShiroService {
 
     @Override
     public AuthorizationInfo getAuthorizationInfo(PrincipalCollection principals) {
-        return null;
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        ShiroUser user = OfficeUtils.shiroUser().orElseThrow(() -> new BusinessException("用户未登录"));
+        info.addRoles(user.getRoles());
+        info.addStringPermissions(user.getAbilities());
+        return info;
     }
 
     @Override

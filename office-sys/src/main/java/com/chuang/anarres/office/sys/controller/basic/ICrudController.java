@@ -12,12 +12,12 @@ public interface ICrudController<CO, RO, UO, E, S extends IRowQueryService<E>> e
     @Override
     @SuppressWarnings("unchecked")
     default Class<RO> readEntityClass() {
-        return (Class<RO>) ReflectionKit.getSuperClassGenericType(getClass(), 2);
+        return (Class<RO>) ReflectionKit.getSuperClassGenericType(getClass(), 1);
     }
 
     @Override
     @SuppressWarnings("unchecked")
     default Class<UO> updateEntityClass() {
-        return (Class<UO>) ReflectionKit.getSuperClassGenericType(getClass(), 3);
+        return (Class<UO>) ReflectionKit.getSuperClassGenericType(getClass(), 2);
     }
 }

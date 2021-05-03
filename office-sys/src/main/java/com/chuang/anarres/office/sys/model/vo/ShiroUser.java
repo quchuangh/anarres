@@ -3,12 +3,14 @@ package com.chuang.anarres.office.sys.model.vo;
 import com.chuang.anarres.enums.Language;
 import com.chuang.anarres.enums.UserStatus;
 import com.chuang.tauceti.support.enums.Gender;
+import com.chuang.tauceti.tools.basic.collection.CollectionKit;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.*;
 
 @Data
 @ApiModel(description = "用户信息")
@@ -69,4 +71,21 @@ public class ShiroUser {
 
     @ApiModelProperty("更新时间")
     private LocalDateTime updatedTime;
+
+    @ApiModelProperty("供客户端ACL用的角色点")
+    private List<String> roles = new ArrayList<>();
+    @ApiModelProperty("供客户端ACL用的权限点")
+    private List<String> abilities = new ArrayList<>();
+
+
+    public boolean canAll(Collection<String> roles, Collection<String> abilities) {
+        boolean canRole = this.roles.containsAll(roles);
+        boolean canAbility = this.abilities.containsAll(abilities);
+        return canRole && canAbility;
+    }
+    public boolean canAny(Collection<String> roles, Collection<String> abilities) {
+        boolean canRole = roles.stream().anyMatch(this.roles::contains);
+        boolean canAbility = abilities.stream().anyMatch(this.abilities::contains);
+        return canRole && canAbility;
+    }
 }

@@ -23,6 +23,6 @@ public interface ICreateController<CO, E, S extends IRowQueryService<E>> extends
 
     @SuppressWarnings("unchecked")
     default Class<CO> createEntityClass() {
-        return (Class<CO>) ReflectionKit.getSuperClassGenericType(getClass(), 1);
+        return (Class<CO>) ReflectionKit.getSuperClassGenericType(getClass(), 0);
     }
 }
