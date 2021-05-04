@@ -1,6 +1,8 @@
 package com.chuang.anarres.generator.impl.angular;
 
+import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.chuang.tauceti.generator.GenType;
+import com.chuang.tauceti.generator.config.GenConfig;
 
 public class ComponentHtml extends AngularComponentGenerator {
     @Override
@@ -21,5 +23,10 @@ public class ComponentHtml extends AngularComponentGenerator {
                 return 0;
             }
         };
+    }
+
+    @Override
+    public String outputFile(GenConfig config, TableInfo info) {
+        return "/angular/routes/" + info.getName() + ".component.html";
     }
 }

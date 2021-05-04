@@ -24,8 +24,5 @@ public abstract class AngularComponentGenerator implements Generator {
         map.put("angularApiPath", "/api" + name.replaceAll("_", "/").toLowerCase());
         return map;
     }
-    @Override
-    public String outputFile(GenConfig config, TableInfo info) {
-        return "/angular/routes/" + info.getName() + ".component.ts";
-    }
+
 }
