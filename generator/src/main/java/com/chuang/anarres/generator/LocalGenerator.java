@@ -66,11 +66,16 @@ public class LocalGenerator {
                 .global(globalConfig -> globalConfig.setFileOverride(true))
                 .strategy(strategyConfig -> strategyConfig.setTableFillList(Arrays.asList(
                         new TableFill("updater", FieldFill.INSERT_UPDATE),
-                        new TableFill("creator", FieldFill.INSERT)
+                        new TableFill("updatedTime", FieldFill.INSERT_UPDATE),
+                        new TableFill("creator", FieldFill.INSERT),
+                        new TableFill("createdTime", FieldFill.INSERT)
+
                 )))
                 .mvn(false)
                 .debug()
-                .lookup("com.chuang.anarres.generator.impl", Generator.class)
+                .lookup("com.chuang.anarres.generator.impl", Generator.class)   //寻找Generator实现类
+//                .addImpl(new AngularComponentTs()) // 直接扫描实现，不用加。
+
                 .templateEngine(new VelocityTemplateEngine())
                 .gen();                                         // 生成代码
 

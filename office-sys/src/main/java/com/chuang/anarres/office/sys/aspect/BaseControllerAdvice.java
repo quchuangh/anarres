@@ -85,9 +85,10 @@ public class BaseControllerAdvice {
                 return Result.fail(StringKit.nullToEmpty(bindingResult.getFieldError().getDefaultMessage()));
             }
         } else if(exception instanceof BusinessException |
-                exception instanceof HttpRequestMethodNotSupportedException |
-                exception instanceof MethodArgumentNotValidException) {
+                exception instanceof HttpRequestMethodNotSupportedException) {
             return Result.fail(exception.getMessage());
+        } else if(exception instanceof MethodArgumentNotValidException){
+            return Result.fail(((MethodArgumentNotValidException) exception).getBindingResult().getFieldError().getDefaultMessage());
         }
 
         String err = "Ex:" + UUID.randomUUID();

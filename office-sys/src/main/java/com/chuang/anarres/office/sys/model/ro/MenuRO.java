@@ -1,4 +1,4 @@
-package com.chuang.anarres.office.sys.model.vo;
+package com.chuang.anarres.office.sys.model.ro;
 
 import com.chuang.anarres.office.sys.model.bo.AclBO;
 import io.swagger.annotations.ApiModelProperty;
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class MenuVO extends TreeVO {
+public class MenuRO extends TreeRO {
 
     @ApiModelProperty("菜单唯一值")
     private String key;

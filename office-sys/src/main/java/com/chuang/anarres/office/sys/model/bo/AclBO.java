@@ -1,6 +1,6 @@
 package com.chuang.anarres.office.sys.model.bo;
 
-import com.chuang.anarres.office.sys.model.enums.ACLMode;
+import com.chuang.anarres.office.sys.enums.ACLMode;
 import lombok.Data;
 
 import java.util.Arrays;

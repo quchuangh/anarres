@@ -21,10 +21,9 @@ public class PushTest {
                 .thenAccept(System.out::println)
                 .join();
 
-        HttpClient client = Https.syncClient;
+
 
         Request.Get("http://www.baidu.com").build().executeAsString();
-        client.doGet("http://www.baidu.com");
     }
 
     @Test

@@ -1,17 +1,13 @@
 package com.chuang.anarres.office.sys.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
-
+import com.baomidou.mybatisplus.annotation.*;
+import com.chuang.anarres.office.sys.entity.api.TreeModel;
+import com.chuang.anarres.office.sys.enums.AbilityType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -23,9 +19,8 @@ import lombok.experimental.Accessors;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
 @TableName("sys_ability")
-public class Ability implements Serializable {
+public class Ability implements TreeModel, Serializable {
 
     private static final long serialVersionUID=1L;
 
@@ -34,12 +29,6 @@ public class Ability implements Serializable {
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
-
-    /**
-     * 编号
-     */
-    @TableField("code")
-    private String code;
 
     /**
      * 名称
@@ -52,6 +41,30 @@ public class Ability implements Serializable {
      */
     @TableField("ability")
     private String ability;
+
+    /**
+     * 上级权限(系统的权限设计没有父子关系，这样做只是为了方便查看)
+     */
+    @TableField("parent_id")
+    private Integer parentId;
+
+    /**
+     * 权限路径(系统的权限设计没有父子关系，这样做只是为了方便查看)
+     */
+    @TableField("parents")
+    private String parents;
+
+    /**
+     * 权限类型
+     */
+    @TableField("ability_type")
+    private AbilityType abilityType;
+
+    /**
+     * 排序
+     */
+    @TableField("sort_rank")
+    private Integer sortRank;
 
 
     /**
@@ -67,11 +80,10 @@ public class Ability implements Serializable {
     private String description;
 
     /**
-     * 是否删除
+     * 是否启用
      */
-    @TableField("deleted")
-    @TableLogic
-    private Boolean deleted;
+    @TableField("enabled")
+    private Boolean enabled;
 
     /**
      * 创建人
@@ -82,7 +94,7 @@ public class Ability implements Serializable {
     /**
      * 创建时间
      */
-    @TableField("created_time")
+    @TableField(value = "created_time", fill = FieldFill.INSERT)
     private LocalDateTime createdTime;
 
     /**
@@ -94,8 +106,7 @@ public class Ability implements Serializable {
     /**
      * 更新时间
      */
-    @TableField("updated_time")
+    @TableField(value = "updated_time", fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updatedTime;
-
 
 }

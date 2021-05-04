@@ -5,7 +5,7 @@ import com.chuang.anarres.office.sys.entity.Api;
 import com.chuang.anarres.office.sys.entity.ApiFieldAcl;
 import com.chuang.anarres.office.sys.enums.FieldAction;
 import com.chuang.anarres.office.sys.event.ApiUpdatedEvent;
-import com.chuang.anarres.office.sys.model.vo.ShiroUser;
+import com.chuang.anarres.office.sys.model.ShiroUser;
 import com.chuang.anarres.office.sys.service.IApiFieldAclService;
 import com.chuang.anarres.office.sys.service.IApiService;
 import com.chuang.tauceti.support.exception.SystemException;

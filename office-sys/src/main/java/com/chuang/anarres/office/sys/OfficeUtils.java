@@ -1,6 +1,6 @@
 package com.chuang.anarres.office.sys;
 
-import com.chuang.anarres.office.sys.model.vo.ShiroUser;
+import com.chuang.anarres.office.sys.model.ShiroUser;
 import com.chuang.tauceti.shiro.spring.web.jwt.JwtPayload;
 import com.chuang.tauceti.shiro.spring.web.jwt.filter.JwtAuthFilter;
 import com.chuang.tauceti.support.exception.BusinessException;

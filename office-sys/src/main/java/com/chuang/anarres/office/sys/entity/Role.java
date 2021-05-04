@@ -13,11 +13,11 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 角色表 角色
+ * 角色表;角色
  * </p>
  *
  * @author chuang
- * @since 2020-12-20
+ * @since 2021-05-04
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -34,12 +34,6 @@ public class Role implements Serializable {
     private Integer id;
 
     /**
-     * 角色编号
-     */
-    @TableField("code")
-    private String code;
-
-    /**
      * 名称
      */
     @TableField("name")
@@ -52,7 +46,7 @@ public class Role implements Serializable {
     private String description;
 
     /**
-     * 是否删除
+     * 是否启用
      */
     @TableField("enabled")
     private Boolean enabled;
@@ -66,7 +60,7 @@ public class Role implements Serializable {
     /**
      * 创建时间
      */
-    @TableField(value = "created_time", fill = FieldFill.INSERT)
+    @TableField("created_time")
     private LocalDateTime createdTime;
 
     /**
@@ -78,7 +72,7 @@ public class Role implements Serializable {
     /**
      * 更新时间
      */
-    @TableField(value = "updated_time", fill = FieldFill.INSERT_UPDATE)
+    @TableField("updated_time")
     private LocalDateTime updatedTime;
 
 

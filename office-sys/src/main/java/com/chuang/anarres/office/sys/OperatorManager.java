@@ -1,6 +1,6 @@
 package com.chuang.anarres.office.sys;
 
-import com.chuang.anarres.office.sys.model.vo.ShiroUser;
+import com.chuang.anarres.office.sys.model.ShiroUser;
 import com.chuang.urras.rowquery.handlers.DefaultValueGetter;
 import com.chuang.urras.rowquery.handlers.ValueGetter;
 

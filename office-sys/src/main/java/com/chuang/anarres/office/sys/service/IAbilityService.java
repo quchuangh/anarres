@@ -13,7 +13,7 @@ import java.util.List;
  * @author chuang
  * @since 2021-01-05
  */
-public interface IAbilityService extends IRowQueryService<Ability> {
+public interface IAbilityService extends IRowQueryService<Ability>, ITreeService<Ability> {
 
     default List<Ability> findByUsername(String username) {
         return null;

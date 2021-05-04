@@ -1,4 +1,4 @@
-package com.chuang.anarres.office.sys.model.vo;
+package com.chuang.anarres.office.sys.model;
 
 import com.chuang.anarres.enums.Language;
 import com.chuang.anarres.enums.UserStatus;

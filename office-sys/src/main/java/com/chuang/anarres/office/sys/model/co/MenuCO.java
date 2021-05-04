@@ -1,4 +1,4 @@
-package com.chuang.anarres.office.sys.model.qo;
+package com.chuang.anarres.office.sys.model.co;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -9,11 +9,7 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @ApiModel("菜单参数")
-public class MenuQO {
-
-    @ApiModelProperty(value = "ID", required = true)
-    @NotNull
-    private Integer id;
+public class MenuCO {
 
     @ApiModelProperty(value = "菜单标题(支持html)", required = true)
     @NotBlank

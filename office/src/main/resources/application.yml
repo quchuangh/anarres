@@ -11,7 +11,7 @@ app:
 mybatis-plus:
   type-aliases-package: com.chuang.anarres.entity
   mapper-locations: classpath*:/mapper/*.xml
-  type-enums-package: com.chuang.tauceti.support.enums,com.chuang.anarres.enums
+  type-enums-package: com.chuang.tauceti.support.enums,com.chuang.anarres.enums,com.chuang.anarres.office.sys.enums
   configuration:
     log-prefix: anarres.dao.log
 

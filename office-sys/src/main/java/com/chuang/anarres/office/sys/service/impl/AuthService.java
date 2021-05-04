@@ -3,7 +3,7 @@ package com.chuang.anarres.office.sys.service.impl;
 import com.chuang.anarres.office.sys.OfficeUtils;
 import com.chuang.anarres.office.sys.entity.User;
 import com.chuang.anarres.office.sys.entity.UserInfo;
-import com.chuang.anarres.office.sys.model.vo.ShiroUser;
+import com.chuang.anarres.office.sys.model.ShiroUser;
 import com.chuang.anarres.office.sys.service.*;
 import com.chuang.tauceti.shiro.spring.web.jwt.realm.IShiroService;
 import com.chuang.tauceti.shiro.spring.web.jwt.realm.LoginToken;

@@ -1,6 +1,6 @@
 package com.chuang.anarres.office.sys.controller;
 
-import com.chuang.anarres.office.sys.model.vo.AppVO;
+import com.chuang.anarres.office.sys.model.ro.AppRO;
 import com.chuang.tauceti.support.Result;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +15,8 @@ public class SysController {
     @Value("${app.description}") private String appDescription;
 
     @GetMapping("/app-info")
-    public Result<AppVO> appInfo() {
-        AppVO app = new AppVO();
+    public Result<AppRO> appInfo() {
+        AppRO app = new AppRO();
         app.setDescription(appDescription);
         app.setName(appName);
         return Result.success(app);

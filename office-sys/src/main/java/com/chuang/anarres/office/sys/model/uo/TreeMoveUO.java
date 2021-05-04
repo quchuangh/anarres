@@ -1,4 +1,4 @@
-package com.chuang.anarres.office.sys.model.qo;
+package com.chuang.anarres.office.sys.model.uo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @ApiModel("树节点移动请求")
-public class TreeMoveQO {
+public class TreeMoveUO {
     @ApiModelProperty(value = "被移动的节点唯一编号", required = true)
     @NotNull
     private Integer from;
