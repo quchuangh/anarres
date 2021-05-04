@@ -1,9 +1,9 @@
 package ${package.Controller};
 
 #if(!${superControllerClass})
-import ${cfg.table.packageCo};
-import ${cfg.table.packageRo};
-import ${cfg.table.packageUo};
+import ${cfg.table.packageCo}.${cfg.table.classNameCo};
+import ${cfg.table.packageRo}.${cfg.table.classNameRo};
+import ${cfg.table.packageUo}.${cfg.table.classNameUo};
 import ${package.Entity}.${entity};
 import ${package.Service}.${table.serviceName};
 import com.chuang.anarres.office.sys.controller.basic.ICrudController;
@@ -40,23 +40,24 @@ import ${superControllerClassPackage};
 class ${table.controllerName}#if(${superControllerClass}) : ${superControllerClass}()#end
 
 #else
-    #if(${superControllerClass})
-    public class ${table.controllerName} extends ${superControllerClass} {
-    #else
-    public class ${table.controllerName} implements ICrudController<${classNameCo}, ${classNameRo}, ${classNameUo}, ${entity}, ${table.serviceName}> {
-        @Resource private ${table.serviceName} service;
+#if(${superControllerClass})
+public class ${table.controllerName} extends ${superControllerClass} {
+#else
+public class ${table.controllerName} implements ICrudController<${cfg.table.classNameCo}, ${cfg.table.classNameRo}, ${cfg.table.classNameUo}, ${entity}, ${table.serviceName}> {
 
-        @Override
-        public ${table.serviceName} service() {
-            return service;
-        }
+    @Resource private ${table.serviceName} service;
 
-        @Override
-        public String basePermission() {
-            return "${package.ModuleName}:";
-        }
-    #end
-
+    @Override
+    public ${table.serviceName} service() {
+        return service;
     }
+
+    @Override
+    public String basePermission() {
+        return "#if(${package.ModuleName})${package.ModuleName}:#end#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}:#else${table.entityPath}#end";
+    }
+#end
+
+}
 
 #end

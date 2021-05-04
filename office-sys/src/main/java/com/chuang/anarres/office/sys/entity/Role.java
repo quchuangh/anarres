@@ -60,7 +60,7 @@ public class Role implements Serializable {
     /**
      * 创建时间
      */
-    @TableField("created_time")
+    @TableField(value = "created_time", fill = FieldFill.INSERT)
     private LocalDateTime createdTime;
 
     /**
@@ -72,7 +72,7 @@ public class Role implements Serializable {
     /**
      * 更新时间
      */
-    @TableField("updated_time")
+    @TableField(value = "updated_time", fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updatedTime;
 
 

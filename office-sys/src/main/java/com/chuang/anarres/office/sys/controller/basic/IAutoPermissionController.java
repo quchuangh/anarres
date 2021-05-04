@@ -11,7 +11,7 @@ public interface IAutoPermissionController {
     default void checkPermission(String suffix) {
         String base = basePermission();
         if(base != null) {
-            SecurityUtils.getSubject().checkPermission(basePermission() + ":" + suffix);
+            SecurityUtils.getSubject().checkPermission(basePermission() + suffix);
         }
     }
 }

@@ -76,12 +76,10 @@ public class LocalGenerator {
                 .strategy(strategyConfig -> {
                     strategyConfig.setTableFillList(Arrays.asList(
                             new TableFill("updater", FieldFill.INSERT_UPDATE),
-                            new TableFill("updatedTime", FieldFill.INSERT_UPDATE),
+                            new TableFill("updated_time", FieldFill.INSERT_UPDATE),
                             new TableFill("creator", FieldFill.INSERT),
-                            new TableFill("createdTime", FieldFill.INSERT)
-
+                            new TableFill("created_time", FieldFill.INSERT)
                     ));
-//                    strategyConfig.setSuperControllerClass(Crudco)
                 })
                 .mvn(false)
                 .debug()
