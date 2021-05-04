@@ -18,6 +18,11 @@
         </dependency>
         <dependency>
             <groupId>com.chuang.anarres</groupId>
+            <artifactId>office-sys</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.chuang.anarres</groupId>
             <artifactId>support</artifactId>
             <version>${project.version}</version>
         </dependency>

@@ -7,10 +7,10 @@ import { AclColDef, IGridDataSource, NgxGridTableComponent, NgxGridTableConstant
 import { DataSourceUtils } from '../../DataSourceUtils';
 
 @Component({
-    selector: '${angularCompSelectorName}',
-    templateUrl: '${angularCompHtmlName}',
+    selector: '${cfg.table.angularCompSelectorName}',
+    templateUrl: '${cfg.table.angularCompHtmlName}',
 })
-export class ${angularCompClassName} implements OnInit {
+export class ${cfg.table.angularCompClassName} implements OnInit {
     // properties 的定义为 filter-input.widget.ts -> FilterSFUISchemaItem 接口
     // 查询字段配置
     schema: SFSchema = {
@@ -83,7 +83,7 @@ export class ${angularCompClassName} implements OnInit {
                 event.columnApi.autoSizeAllColumns();
             },
         };
-        this.dataSource = DataSourceUtils.create(http, '${angularApiPath}', (r) => r);
+        this.dataSource = DataSourceUtils.create(http, '${cfg.table.angularApiPath}', (r) => r);
     }
 
     ngOnInit(): void {}

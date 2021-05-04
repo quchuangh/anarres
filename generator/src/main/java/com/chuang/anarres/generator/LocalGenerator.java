@@ -20,6 +20,14 @@ import java.util.Scanner;
 
 /**
  * 本机生成代码
+ * 自定义的Generator重写 initGlobalMap(GenConfig config) 产生的变量通过 cfg.global 访问
+ * 自定义的Generator重写 initTableMap(GenConfig config, TableInfo tableInfo) 产生的变量通过 cfg.table 访问
+ * 自定义的Generator重写 initContext(GenConfig config, TableInfo info) 产生的变量通过 cfg.tableGen 访问
+ *
+ * 假设有 a,b,c 3张表
+ * cfg.global 全局，3张表的所有生成器都能使用 比如 a 表的controller 生成器创建的变量能在 所有表的所有模板中使用
+ * cfg.table  是同一张表的生成器之间共享。  比如 a 表的 controller 生成器创建的变量能在 a表的 controller，service，等所有模板中使用
+ * cfg.tableGen 同一张表的同一个生成器使用。  比如 a 表的 controller 生成器创建的变量只能在 controller模板中使用
  */
 public class LocalGenerator {
 
@@ -56,21 +64,25 @@ public class LocalGenerator {
 
                 .tablePrefix("t_", "sys_")
                 .includeTables(tables)
-
                 // 添加枚举字段的类型转化，如果生成的表格字段正好在下面的所有配置中，则会将类型改为相应的枚举类型
                 .enums(Bank.class, "t_payment_deal:bank", "t_bank_card:bank", "t_withdraw_deal:bank")
                 .enums(Gender.class, "sys_user:gender", "sys_user_info:gender")
                 .enums(Language.class, "sys_user:language", "sys_user_info:language", "sys_i18n:language")
                 .enums(RelationType.class, "sys_relation:type")
                 .enums("sys_user", "state", UserStatus.class)
-                .global(globalConfig -> globalConfig.setFileOverride(true))
-                .strategy(strategyConfig -> strategyConfig.setTableFillList(Arrays.asList(
-                        new TableFill("updater", FieldFill.INSERT_UPDATE),
-                        new TableFill("updatedTime", FieldFill.INSERT_UPDATE),
-                        new TableFill("creator", FieldFill.INSERT),
-                        new TableFill("createdTime", FieldFill.INSERT)
+                .global(globalConfig -> {
+                    globalConfig.setFileOverride(true);
+                })
+                .strategy(strategyConfig -> {
+                    strategyConfig.setTableFillList(Arrays.asList(
+                            new TableFill("updater", FieldFill.INSERT_UPDATE),
+                            new TableFill("updatedTime", FieldFill.INSERT_UPDATE),
+                            new TableFill("creator", FieldFill.INSERT),
+                            new TableFill("createdTime", FieldFill.INSERT)
 
-                )))
+                    ));
+//                    strategyConfig.setSuperControllerClass(Crudco)
+                })
                 .mvn(false)
                 .debug()
                 .lookup("com.chuang.anarres.generator.impl", Generator.class)   //寻找Generator实现类

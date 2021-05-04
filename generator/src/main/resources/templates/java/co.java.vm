@@ -1,0 +1,51 @@
+package {cfg.table.packageCo};
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
+
+/**
+ * <p>
+ * $!{table.comment}
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Data
+@Accessors(chain = true)
+@ApiModel(value="${cfg.table.classNameCo}对象", description="$!{table.comment}")
+public class ${cfg.table.classNameCo} implements Serializable {
+## ----------  BEGIN 字段循环遍历  ----------
+#foreach($field in ${table.fields})
+#if(!${field.keyFlag} && !${field.fill})
+#if("$!field.comment" != "")
+    @ApiModelProperty(value = "${field.comment}")
+#end
+#if(${field.propertyType.equals("String")} )
+    @NotBlank(message = "${field.comment}不能为空")
+#else
+    @NotNull(message = "${field.comment}不能为空")
+#end
+    private ${field.propertyType} ${field.propertyName};
+#end
+
+#end
+
+    @Override
+    public String toString() {
+        return "${cfg.table.classNameCo}{" +
+  #foreach($field in ${table.fields})
+    #if($!{foreach.index}==0)
+        "${field.propertyName}=" + ${field.propertyName} +
+    #else
+        ", ${field.propertyName}=" + ${field.propertyName} +
+    #end
+  #end
+        "}";
+    }
+}

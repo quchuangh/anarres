@@ -19,9 +19,9 @@ public abstract class AngularComponentGenerator implements Generator {
 
 
         map.put("angularCompSelectorName", "app-" + name.replaceAll("_", "-").toLowerCase());
-        map.put("angularCompHtmlName", "." + name.replaceAll("_", "-").toLowerCase() + "/.component.html");
+        map.put("angularCompHtmlName", "./" + name.replaceAll("_", "-").toLowerCase() + ".component.html");
         map.put("angularCompClassName", StringKit.firstCharToUpperCase(camel) + "Component");
-        map.put("angularApiPath", "/api" + name.replaceAll("_", "/").toLowerCase());
+        map.put("angularApiPath", "/api/" + name.replaceAll("_", "/").toLowerCase());
         return map;
     }
 
