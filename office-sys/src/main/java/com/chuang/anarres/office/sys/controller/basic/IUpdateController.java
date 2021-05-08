@@ -16,13 +16,13 @@ import javax.validation.Valid;
 
 public interface IUpdateController<UO, E, S extends IRowQueryService<E>> extends IBaseController<E, S>, IAutoPermissionController {
 
-    @PostMapping(value = "/update/{id}")
+    @PostMapping(value = "/update")
     @ApiOperation("修改资料")
     @ResponseBody
-    default Result<Void> update(@PathVariable("id") String id, @Valid @RequestBody @ApiParam UO uo) {
+    default Result<Void> update(@Valid @RequestBody @ApiParam UO uo) {
         checkPermission("update");
-        E entity = service().findById(id).orElseThrow(() -> new BusinessException("无法找到id为{}的记录", id));
-        E newEntity = ConvertKit.toBean(uo, () -> entity);
+        E e = ClassKit.newInstance(entityClass()).orElseThrow(() -> new BusinessException("创建Entity失败"));
+        E newEntity = ConvertKit.toBean(uo, () -> e);
         return Result.whether(service().updateById(newEntity));
     }
 

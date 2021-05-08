@@ -2,10 +2,12 @@ package com.chuang.anarres.office.sys.controller;
 
 
 import com.chuang.anarres.office.sys.controller.basic.ICreateController;
+import com.chuang.anarres.office.sys.controller.basic.ICrudController;
 import com.chuang.anarres.office.sys.controller.basic.IDeleteController;
 import com.chuang.anarres.office.sys.entity.Ability;
 import com.chuang.anarres.office.sys.model.co.AbilityCO;
 import com.chuang.anarres.office.sys.model.ro.AbilityRO;
+import com.chuang.anarres.office.sys.model.uo.AbilityUO;
 import com.chuang.anarres.office.sys.model.uo.TreeMoveUO;
 import com.chuang.anarres.office.sys.service.IAbilityService;
 import com.chuang.tauceti.support.Result;
@@ -29,9 +31,7 @@ import java.util.stream.Collectors;
  */
 @RestController
 @RequestMapping("/sys/ability")
-public class AbilityController implements
-        ICreateController<AbilityCO, Ability, IAbilityService>,
-        IDeleteController<Ability, IAbilityService> {
+public class AbilityController implements ICrudController<AbilityCO, AbilityRO, AbilityUO, Ability, IAbilityService> {
 
     @Resource private IAbilityService abilityService;
 
