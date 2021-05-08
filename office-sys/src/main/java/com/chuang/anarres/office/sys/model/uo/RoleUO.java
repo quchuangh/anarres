@@ -1,0 +1,41 @@
+package com.chuang.anarres.office.sys.model.uo;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import lombok.experimental.Accessors;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+/**
+ * <p>
+ * 角色表;角色
+ * </p>
+ *
+ * @author chuang
+ * @since 2021-05-07
+ */
+@Data
+@Accessors(chain = true)
+@ApiModel(value="RoleUO对象", description="角色表;角色")
+public class RoleUO implements Serializable {
+
+    @ApiModelProperty(value = "角色标识")
+    @NotBlank(message = "角色标识不能为空")
+    private String role;
+
+    @ApiModelProperty(value = "名称")
+    @NotBlank(message = "名称不能为空")
+    private String name;
+
+    @ApiModelProperty(value = "简介")
+    @NotBlank(message = "简介不能为空")
+    private String description;
+
+    @ApiModelProperty(value = "是否启用")
+    @NotNull(message = "是否启用不能为空")
+    private Boolean enabled;
+
+}

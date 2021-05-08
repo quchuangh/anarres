@@ -1,0 +1,101 @@
+import { Component, Input, OnInit } from '@angular/core';
+import { NzModalRef } from 'ng-zorro-antd/modal';
+import { SFSchema } from '@delon/form';
+
+@Component({
+    selector: 'app-view-${cfg.table.angularCompSelectorName}',
+    templateUrl: './view.component.html',
+})
+export class ${cfg.table.angularCompClassName}ViewComponent implements OnInit {
+
+    @Input()
+    record: any;
+
+    schema: SFSchema = {
+        properties: {
+#foreach($field in ${table.fields})
+    #if(!${field.keyFlag} && !${field.fill})
+        #if(${field.propertyType.equalsIgnoreCase("boolean")})
+            ${field.propertyName}: {
+                type: 'boolean', title: '${field.comment}',
+                enum: [{label: '是', value: true,}, {label: '否', value: false}],
+                default: true,
+                readOnly: true,
+                ui: {placeholder: '是否启用', widget: 'select'}
+            },
+        #elseif(
+            ${field.propertyType.equals("int")} ||
+            ${field.propertyType.equals("Integer")} ||
+            ${field.propertyType.equalsIgnoreCase("long")} ||
+            ${field.propertyType.equalsIgnoreCase("short")} ||
+            ${field.propertyType.equalsIgnoreCase("byte")} ||
+            ${field.propertyType.equals("BigDecimal")}
+        )
+            ${field.propertyName} : {type: 'number', title: '${field.comment}', readOnly: true},
+        #elseif(${field.propertyType.equals("String")})
+            #if(${field.propertyName.equalsIgnoreCase("remark")} || ${field.propertyName.equalsIgnoreCase(
+                "desciption")})
+            ${field.propertyName} : {
+                type: 'string',
+                title: '${field.comment}',
+                readOnly: true,
+                ui: {
+                    widget: 'textarea',
+                    autosize: {minRows: 2, maxRows: 10},
+                    placeholder: '添加描述'
+                }
+            },
+            #else
+            ${field.propertyName} : {
+                type: 'string',
+                title: '${field.comment}',
+                pattern: '^\\w+$',
+                readOnly: true,
+                ui: {
+                    widget: 'string',
+                    placeholder: '角色唯一标识,不可重复,由字母,下划线,数字组合',
+                    errors: {
+                        'pattern': '仅支持输入字母、下划线、数字'
+                    }
+                }
+            },
+            #end
+        #elseif(${field.propertyType.equals("Date")} || ${field.propertyType.startsWith("LocalDate")})
+            ${field.propertyName} : {
+                type: 'string',
+                title: '${field.comment}',
+                format: 'date-time',
+                readOnly: true
+            },
+        #else
+            // 所有未知的复杂类型都当作枚举处理
+            ${field.propertyName}: {
+                type: 'array',
+                title: '${field.comment}',
+                enum: [{label: 'v0', value: 0,}, {label: 'v1', value: 1}],
+                default: 0,
+                readOnly: true,
+                ui: {placeholder: '${field.comment}', widget: 'select'}
+            },
+        #end
+    #end
+#end
+        },
+        ui: {
+            spanLabelFixed: 100,
+            grid: { span: 24 }
+        }
+    };
+
+    constructor(
+        private modal: NzModalRef
+    ) {}
+
+    ngOnInit(): void {
+
+    }
+
+    close() {
+        this.modal.destroy();
+    }
+}

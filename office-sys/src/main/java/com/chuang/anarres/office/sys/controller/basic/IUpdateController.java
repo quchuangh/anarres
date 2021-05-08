@@ -1,8 +1,8 @@
 package com.chuang.anarres.office.sys.controller.basic;
 
-import com.baomidou.mybatisplus.core.toolkit.ReflectionKit;
 import com.chuang.tauceti.support.Result;
 import com.chuang.tauceti.support.exception.BusinessException;
+import com.chuang.tauceti.tools.basic.reflect.ClassKit;
 import com.chuang.tauceti.tools.basic.reflect.ConvertKit;
 import com.chuang.urras.rowquery.IRowQueryService;
 import io.swagger.annotations.ApiOperation;
@@ -28,6 +28,6 @@ public interface IUpdateController<UO, E, S extends IRowQueryService<E>> extends
 
     @SuppressWarnings("unchecked")
     default Class<UO> updateEntityClass() {
-        return (Class<UO>) ReflectionKit.getSuperClassGenericType(getClass(), 1);
+        return (Class<UO>) ClassKit.getSuperClassGenericType(getClass(), IUpdateController.class, 0);
     }
 }

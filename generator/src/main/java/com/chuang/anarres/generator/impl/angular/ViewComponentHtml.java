@@ -5,20 +5,19 @@ import com.chuang.anarres.generator.CustomGenTypes;
 import com.chuang.tauceti.generator.GenType;
 import com.chuang.tauceti.generator.config.GenConfig;
 
-public class ComponentTs extends AngularComponentGenerator {
+public class ViewComponentHtml extends AngularComponentGenerator {
     @Override
     public String template() {
-        return "/templates/angular/component.ts.vm";
+        return "/templates/angular/view.component.html.vm";
     }
 
     @Override
     public GenType type() {
-        return CustomGenTypes.AngularTs;
+        return CustomGenTypes.AngularViewHtml;
     }
 
     @Override
     public String outputFile(GenConfig config, TableInfo info) {
-        return "/a-makes/angular/routes/" + info.getName() + "/" + info.getName() + ".component.ts";
+        return "/a-makes/angular/routes/" + info.getName() + "/modal/view.component.html";
     }
-
 }

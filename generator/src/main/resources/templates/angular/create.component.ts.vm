@@ -1,0 +1,108 @@
+import { Component, OnInit } from '@angular/core';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzModalRef } from 'ng-zorro-antd/modal';
+import { _HttpClient } from '@delon/theme';
+import { SFSchema } from '@delon/form';
+
+@Component({
+    selector: 'app-create-${cfg.table.angularCompSelectorName}',
+    templateUrl: './create.component.html',
+})
+export class ${cfg.table.angularCompClassName}CreateComponent implements OnInit {
+
+    rolePrefix = '${cfg.table.rolePrefix}';
+
+    schema: SFSchema = {
+        properties: {
+#foreach($field in ${table.fields})
+    #if(!${field.keyFlag} && !${field.fill})
+        #if(${field.propertyType.equalsIgnoreCase("boolean")})
+            ${field.propertyName}: {
+                type: 'boolean', title: '${field.comment}',
+                enum: [{label: '是', value: true,}, {label: '否', value: false}],
+                default: true,
+                ui: {placeholder: '是否启用', widget: 'select'}
+            },
+        #elseif(
+            ${field.propertyType.equals("int")} ||
+            ${field.propertyType.equals("Integer")} ||
+            ${field.propertyType.equalsIgnoreCase("long")} ||
+            ${field.propertyType.equalsIgnoreCase("short")} ||
+            ${field.propertyType.equalsIgnoreCase("byte")} ||
+            ${field.propertyType.equals("BigDecimal")}
+        )
+            ${field.propertyName} : {type: 'number', title: '${field.comment}'},
+        #elseif(${field.propertyType.equals("String")})
+            #if(${field.propertyName.equalsIgnoreCase("remark")} || ${field.propertyName.equalsIgnoreCase(
+                "description")})
+            ${field.propertyName} : {
+                type: 'string',
+                title: '${field.comment}',
+                ui: {
+                    widget: 'textarea',
+                    autosize: {minRows: 2, maxRows: 10},
+                    placeholder: '添加描述'
+                }
+            },
+            #else
+            ${field.propertyName} : {
+                type: 'string',
+                title: '${field.comment}',
+                pattern: '^\\w+$',
+                ui: {
+                    widget: 'string',
+                    placeholder: '角色唯一标识,不可重复,由字母,下划线,数字组合',
+                    errors: {
+                        'pattern': '仅支持输入字母、下划线、数字'
+                    }
+                }
+            },
+            #end
+        #elseif(${field.propertyType.equals("Date")} || ${field.propertyType.startsWith("LocalDate")})
+            ${field.propertyName} : {
+                type: 'string',
+                title: '${field.comment}',
+                format: 'date-time'
+            },
+        #else
+            // 所有未知的复杂类型都当作枚举处理
+            ${field.propertyName}: {
+                type: 'array',
+                title: '${field.comment}',
+                enum: [{label: 'v0', value: 0,}, {label: 'v1', value: 1}],
+                default: 0,
+                ui: {placeholder: '${field.comment}', widget: 'select'}
+            },
+        #end
+    #end
+#end
+        },
+        required: [${cfg.table.angularCompSfRequires}],
+        ui: {
+            spanLabelFixed: 100,
+            grid: { span: 24 }
+        }
+    };
+
+    constructor(
+        private modal: NzModalRef,
+        private msgSrv: NzMessageService,
+
+        public http: _HttpClient,
+    ) {}
+
+    ngOnInit(): void {
+
+    }
+
+    save(value: any) {
+        this.http.post(`${cfg.table.angularApiPath}/create`, value).subscribe(res => {
+            this.msgSrv.success('添加成功');
+            this.modal.close(res);
+        });
+    }
+
+    close() {
+        this.modal.destroy();
+    }
+}

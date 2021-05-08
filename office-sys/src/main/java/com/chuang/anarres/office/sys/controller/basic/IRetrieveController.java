@@ -31,6 +31,6 @@ public interface IRetrieveController<RO, E, S extends IRowQueryService<E>> exten
 
     @SuppressWarnings("unchecked")
     default Class<RO> readEntityClass() {
-        return (Class<RO>) ReflectionKit.getSuperClassGenericType(getClass(), 1);
+        return (Class<RO>) ClassKit.getSuperClassGenericType(getClass(), IRetrieveController.class, 0);
     }
 }

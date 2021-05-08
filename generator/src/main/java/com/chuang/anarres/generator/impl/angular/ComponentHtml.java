@@ -18,6 +18,6 @@ public class ComponentHtml extends AngularComponentGenerator {
 
     @Override
     public String outputFile(GenConfig config, TableInfo info) {
-        return "/angular/routes/" + info.getName() + ".component.html";
+        return "/a-makes/angular/routes/" + info.getName() + "/" + info.getName() + ".component.html";
     }
 }

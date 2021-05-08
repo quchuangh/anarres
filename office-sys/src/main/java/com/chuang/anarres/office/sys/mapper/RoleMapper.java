@@ -1,7 +1,7 @@
 package com.chuang.anarres.office.sys.mapper;
 
-import com.chuang.anarres.office.sys.entity.Role;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.chuang.anarres.office.sys.entity.Role;
 
 /**
  * <p>
@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author chuang
- * @since 2021-05-04
+ * @since 2021-05-07
  */
 public interface RoleMapper extends BaseMapper<Role> {
 

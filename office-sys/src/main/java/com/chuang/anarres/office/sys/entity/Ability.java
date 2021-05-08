@@ -66,13 +66,6 @@ public class Ability implements TreeModel, Serializable {
     @TableField("sort_rank")
     private Integer sortRank;
 
-
-    /**
-     * 是否可向下授权
-     */
-    @TableField("licensable")
-    private Boolean licensable;
-
     /**
      * 描述
      */

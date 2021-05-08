@@ -29,10 +29,6 @@ public class AbilityCO {
     @NotNull
     private Integer parentId;
 
-    @ApiModelProperty("是否可向下授权")
-    @NotNull
-    private Boolean licensable;
-
     @ApiModelProperty("是否启用")
     @NotNull
     private Boolean enabled;

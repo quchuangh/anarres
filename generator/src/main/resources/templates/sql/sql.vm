@@ -1,0 +1,6 @@
+
+INSERT INTO `sys_menu`
+    (code, parent_id, parents, sort_rank, text, i18n, link, external_link, target, hide_in_breadcrumb, reuse, icon, acl, enabled, can_shortcut, creator, created_time, updater, updated_time)
+VALUES (
+    'report', 0, '0/1/', 6, '报表', 'menu.report', '#', '', '_self', true, false, '', '', true, false, 'system', '2021-02-04 14:39:39', 'admin', '2021-03-09 17:52:53'
+);

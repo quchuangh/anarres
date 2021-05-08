@@ -73,9 +73,9 @@ public class ShiroUser {
     private LocalDateTime updatedTime;
 
     @ApiModelProperty("供客户端ACL用的角色点")
-    private List<String> roles = new ArrayList<>();
+    private Collection<String> roles = new ArrayList<>();
     @ApiModelProperty("供客户端ACL用的权限点")
-    private List<String> abilities = new ArrayList<>();
+    private Collection<String> abilities = new ArrayList<>();
 
 
     public boolean canAll(Collection<String> roles, Collection<String> abilities) {

@@ -23,6 +23,8 @@ import org.apache.shiro.util.ByteSource;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Optional;
 
 @Service
@@ -64,8 +66,11 @@ public class AuthService implements IAuthService, IShiroService {
         UserInfo info = userInfoService.findByUsername(token.getUsername())
                 .orElseThrow(() -> new BusinessException("{}用户信息缺失，请联系管理员修复", token.getUsername()));
 
+        ShiroUser user = (ShiroUser) SecurityUtils.getSubject().getPrincipal();
+        BeanKit.copyProperties(info, user);
 
-        BeanKit.copyProperties(info, SecurityUtils.getSubject().getPrincipal());
+        user.setAbilities(Arrays.asList("role:*", "ability:*", "i18n:*"));
+        user.setRoles(Collections.singleton("admin"));
         log.info("login success");
     }
 

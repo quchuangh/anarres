@@ -12,9 +12,10 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author chuang
- * @since 2021-05-04
+ * @since 2021-05-07
  */
 @Service
 public class RoleServiceImpl extends RowQueryService<RoleMapper, Role> implements IRoleService {
+
 
 }

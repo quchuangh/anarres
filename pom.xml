@@ -17,7 +17,6 @@
         <module>task</module>
         <module>office-sys</module>
         <module>rest-app</module>
-        <module>CA</module>
         <module>generator</module>
     </modules>
 

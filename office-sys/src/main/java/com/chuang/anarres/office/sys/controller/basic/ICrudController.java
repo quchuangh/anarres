@@ -1,6 +1,6 @@
 package com.chuang.anarres.office.sys.controller.basic;
 
-import com.baomidou.mybatisplus.core.toolkit.ReflectionKit;
+import com.chuang.tauceti.tools.basic.reflect.ClassKit;
 import com.chuang.urras.rowquery.IRowQueryService;
 
 public interface ICrudController<CO, RO, UO, E, S extends IRowQueryService<E>> extends
@@ -12,12 +12,17 @@ public interface ICrudController<CO, RO, UO, E, S extends IRowQueryService<E>> e
     @Override
     @SuppressWarnings("unchecked")
     default Class<RO> readEntityClass() {
-        return (Class<RO>) ReflectionKit.getSuperClassGenericType(getClass(), 1);
+        return (Class<RO>) ClassKit.getSuperClassGenericType(getClass(), ICrudController.class, 1);
+    }
+
+    @SuppressWarnings("unchecked")
+    default Class<CO> createEntityClass() {
+        return (Class<CO>) ClassKit.getSuperClassGenericType(getClass(), ICrudController.class, 0);
     }
 
     @Override
     @SuppressWarnings("unchecked")
     default Class<UO> updateEntityClass() {
-        return (Class<UO>) ReflectionKit.getSuperClassGenericType(getClass(), 2);
+        return (Class<UO>) ClassKit.getSuperClassGenericType(getClass(), ICrudController.class,2);
     }
 }

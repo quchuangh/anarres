@@ -54,7 +54,7 @@ public class ${table.controllerName} implements ICrudController<${cfg.table.clas
 
     @Override
     public String basePermission() {
-        return "#if(${package.ModuleName})${package.ModuleName}:#end#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}:#else${table.entityPath}#end";
+        return "${cfg.table.rolePrefix}";
     }
 #end
 

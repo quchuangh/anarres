@@ -26,10 +26,6 @@ public class AbilityRO extends TreeRO {
     @ApiModelProperty("排序")
     private Integer sortRank;
 
-
-    @ApiModelProperty("是否可向下授权")
-    private Boolean licensable;
-
     @ApiModelProperty("描述")
     private String description;
 

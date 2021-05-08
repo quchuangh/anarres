@@ -9,7 +9,8 @@ import com.chuang.urras.rowquery.IRowQueryService;
  * </p>
  *
  * @author chuang
- * @since 2021-05-04
+ * @since 2021-05-07
  */
 public interface IRoleService extends IRowQueryService<Role> {
+
 }

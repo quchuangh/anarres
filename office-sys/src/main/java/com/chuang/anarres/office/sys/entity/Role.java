@@ -17,7 +17,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author chuang
- * @since 2021-05-04
+ * @since 2021-05-07
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -32,6 +32,12 @@ public class Role implements Serializable {
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
+
+    /**
+     * 角色标识
+     */
+    @TableField("role")
+    private String role;
 
     /**
      * 名称

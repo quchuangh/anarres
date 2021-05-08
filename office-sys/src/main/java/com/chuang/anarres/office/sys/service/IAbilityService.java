@@ -1,6 +1,7 @@
 package com.chuang.anarres.office.sys.service;
 
 import com.chuang.anarres.office.sys.entity.Ability;
+import com.chuang.anarres.office.sys.entity.LicensableAbility;
 import com.chuang.urras.rowquery.IRowQueryService;
 
 import java.util.List;
@@ -15,7 +16,8 @@ import java.util.List;
  */
 public interface IAbilityService extends IRowQueryService<Ability>, ITreeService<Ability> {
 
-    default List<Ability> findByUsername(String username) {
-        return null;
-    }
+    List<LicensableAbility> findByUsername(String username);
+
+    List<LicensableAbility> findByRoleId(Integer roleId);
+
 }
