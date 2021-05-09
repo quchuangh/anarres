@@ -31,7 +31,6 @@ import java.util.Scanner;
  */
 public class LocalGenerator {
 
-
     /**
      * <p>
      * 读取控制台内容
@@ -62,7 +61,7 @@ public class LocalGenerator {
                 .rootPackage("com.chuang.anarres.office.sys")
                 .nameConvert(GenType.ENTITY, "%s")// 相加XXXXEntity后缀,填入 %sEntity
 
-                .tablePrefix("t_", "sys_")
+                .tablePrefix("t_", "sys_") //表前缀，生成的对象都会去掉前缀
                 .includeTables(tables)
                 // 添加枚举字段的类型转化，如果生成的表格字段正好在下面的所有配置中，则会将类型改为相应的枚举类型
                 .enums(Bank.class, "t_payment_deal:bank", "t_bank_card:bank", "t_withdraw_deal:bank")
@@ -81,8 +80,8 @@ public class LocalGenerator {
                             new TableFill("created_time", FieldFill.INSERT)
                     ));
                 })
-                .mvn(false)
-                .debug()
+                .mvn(true) // 是否为maven工程,目前没什么用，没有任何generator对是否为maven项目做了判断。
+                .debug() // 是否打印debug日志
                 .lookup("com.chuang.anarres.generator.impl", Generator.class)   //寻找Generator实现类
 //                .addImpl(new AngularComponentTs()) // 直接扫描实现，不用加。
 
