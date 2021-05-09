@@ -1,6 +1,7 @@
-package com.chuang.anarres.office.sys.model.ro;
+package com.chuang.anarres.office.sys.model.uo;
 
 import com.chuang.anarres.office.sys.model.bo.AclBO;
+import com.chuang.anarres.office.sys.model.ro.TreeRO;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -8,8 +9,12 @@ import lombok.EqualsAndHashCode;
 import java.time.LocalDateTime;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class MenuRO extends TreeRO {
+public class MenuUO {
+
+    @ApiModelProperty("节点ID")
+    private Integer id;
+    @ApiModelProperty("父节点ID")
+    private Integer parentId;
 
     @ApiModelProperty("菜单唯一值")
     private String key;
@@ -48,7 +53,7 @@ public class MenuRO extends TreeRO {
     @ApiModelProperty("图标")
     private String icon;
 
-    @ApiModelProperty("ACL")
+    @ApiModelProperty(value = "ACL")
     private String acl;
 
     @ApiModelProperty("是否启用")

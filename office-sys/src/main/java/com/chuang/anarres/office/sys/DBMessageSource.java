@@ -31,8 +31,7 @@ public class DBMessageSource extends AbstractMessageSource implements ResourceLo
     // 当然 实际使用者也可以不使用这种缓存的方式
     private static final Map<Locale, Map<String, String>> LOCAL_CACHE = new ConcurrentHashMap<>(256);
 
-    @Resource
-    II18nService i18nService;
+    @Resource private II18nService i18nService;
 
     /**
      * 初始化

@@ -9,8 +9,12 @@ import lombok.EqualsAndHashCode;
 import java.time.LocalDateTime;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
 public class AbilityUO extends TreeRO {
+
+    @ApiModelProperty("节点ID")
+    private Integer id;
+    @ApiModelProperty("父节点ID")
+    private Integer parentId;
 
     @ApiModelProperty("名称")
     private String name;

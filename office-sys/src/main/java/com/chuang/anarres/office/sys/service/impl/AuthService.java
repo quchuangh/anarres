@@ -69,7 +69,7 @@ public class AuthService implements IAuthService, IShiroService {
         ShiroUser user = (ShiroUser) SecurityUtils.getSubject().getPrincipal();
         BeanKit.copyProperties(info, user);
 
-        user.setAbilities(Arrays.asList("role:*", "ability:*", "i18n:*"));
+        user.setAbilities(Arrays.asList("role:*", "ability:*", "i18n:*", "menu:*"));
         user.setRoles(Collections.singleton("admin"));
         log.info("login success");
     }

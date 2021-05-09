@@ -6,6 +6,7 @@ import com.chuang.anarres.enums.Language;
 import com.chuang.tauceti.tools.basic.HashKit;
 import com.chuang.urras.rowquery.IRowQueryService;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -29,6 +30,7 @@ public interface II18nService extends IRowQueryService<I18n> {
     boolean delete(I18nType type, String i18n);
 
     boolean delete(I18nType type, String i18n, Language language);
+
 
 
 }

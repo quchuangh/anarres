@@ -8,10 +8,13 @@ import com.chuang.anarres.office.sys.entity.I18n;
 import com.chuang.anarres.office.sys.service.II18nService;
 import com.chuang.anarres.enums.I18nType;
 import com.chuang.anarres.enums.Language;
+import com.chuang.tauceti.support.Result;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,6 +59,21 @@ public class I18nController extends UnsafeCrudController<I18n, II18nService> {
         }
     }
 
+    @GetMapping("/all/client")
+    @RequiresPermissions("i18n:read")
+    public Result<JSONObject> client() {
+        List<I18n> i18ns = i18nService.lambdaQuery().eq(I18n::getTypeGroup, I18nType.CLIENT).list();
+
+        return Result.success();
+    }
+
+    @GetMapping("/all/server")
+    @RequiresPermissions("i18n:read")
+    public Result<List<I18n>> server() {
+        return Result.success(i18nService.lambdaQuery().eq(I18n::getTypeGroup, I18nType.SERVER).list());
+    }
+
+
     private String toProperties(List<I18n> i18ns) {
         StringBuilder builder = new StringBuilder();
         i18ns.forEach(i18n -> {
@@ -68,8 +86,28 @@ public class I18nController extends UnsafeCrudController<I18n, II18nService> {
 
     private JSONObject toJSON(List<I18n> list) {
         JSONObject json = new JSONObject();
-        list.forEach(i18n -> json.put(i18n.getI18n(), i18n.getMessage()));
+        list.stream().sorted(Comparator.comparing(I18n::getI18n)).forEach(i18n -> {
+            putValue(json, i18n.getI18n(), i18n.getMessage());
+        });
         return json;
+    }
+
+    private void putValue(JSONObject obj, String key, String value) {
+//        ("\"" + key.replaceAll("\\.", "\".\"") + "\"")
+        String[] props = key.split("\\.");
+        JSONObject last = obj;
+        for(int i = 0; i < props.length - 1; i++) {
+            if(!last.containsKey(props[i]) ) {
+                last.put(props[i], new JSONObject());
+            } else if(!(last.get(props[i]) instanceof JSONObject)) {
+                String v = last.getString(props[i]);
+                last.put(props[i], new JSONObject());
+                last.getJSONObject(props[i]).put("$", v);
+            }
+            last = last.getJSONObject(props[i]);
+        }
+
+        last.put(props[props.length - 1], value);
     }
 
     @Override

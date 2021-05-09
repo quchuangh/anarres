@@ -3,9 +3,11 @@ package com.chuang.anarres.office.sys.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.chuang.anarres.office.sys.controller.basic.ICreateController;
+import com.chuang.anarres.office.sys.controller.basic.ICrudController;
 import com.chuang.anarres.office.sys.controller.basic.IDeleteController;
 import com.chuang.anarres.office.sys.entity.Menu;
 import com.chuang.anarres.office.sys.model.co.MenuCO;
+import com.chuang.anarres.office.sys.model.uo.MenuUO;
 import com.chuang.anarres.office.sys.model.uo.TreeMoveUO;
 import com.chuang.anarres.office.sys.model.bo.AclBO;
 import com.chuang.anarres.office.sys.model.ro.MenuRO;
@@ -36,9 +38,7 @@ import java.util.stream.Collectors;
 @Api(tags = "菜单模块")
 @RestController
 @RequestMapping("/sys/menu")
-public class MenuController implements
-        ICreateController<MenuCO, Menu, IMenuService>,
-        IDeleteController<Menu, IMenuService> {
+public class MenuController implements ICrudController<MenuCO, MenuRO, MenuUO, Menu, IMenuService> {
 
     @Resource private IMenuService menuService;
 
@@ -51,13 +51,7 @@ public class MenuController implements
     @GetMapping("/all")
     public Result<List<MenuRO>> menu() {
         return Result.success(
-                menuService.list().stream().map(menu -> {
-                    MenuRO ro = ConvertKit.toBean(menu, MenuRO::new);
-                    if(StringKit.isNotBlank(menu.getAcl())) {
-                        ro.setAcl(JSONObject.parseObject(menu.getAcl(), AclBO.class));
-                    }
-                    return ro;
-                })
+                menuService.list().stream().map(menu -> ConvertKit.toBean(menu, MenuRO::new))
                 .sorted(Comparator.comparing(MenuRO::getSortRank))
                 .collect(Collectors.toList())
         );
@@ -66,7 +60,7 @@ public class MenuController implements
 
     @Override
     public String basePermission() {
-        return "ability:menu";
+        return "menu:";
     }
 
     @Override
