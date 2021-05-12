@@ -60,6 +60,8 @@ public class MenuServiceImpl extends RowQueryService<MenuMapper, Menu> implement
                     TreeMenuBO bo = ConvertKit.toBean(m, TreeMenuBO::new);
                     bo.setDisabled(!m.getEnabled());
                     bo.setShortcut(fastMenus.contains(m.getCode()));
+                    bo.setSort(m.getSortRank());
+                    bo.setKey(m.getId() + "");
                     bo.setChildren(convert(node.getChildren(), fastMenus));
                     if (StringKit.isNotBlank(m.getAcl())) {
                         bo.setAcl(JSONObject.parseObject(m.getAcl(), AclBO.class));

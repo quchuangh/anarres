@@ -42,10 +42,6 @@ public class DictItemCO implements Serializable {
     @NotNull(message = "父id不能为空")
     private Integer parentId;
 
-    @ApiModelProperty(value = "路径")
-    @NotBlank(message = "路径不能为空")
-    private String parents;
-
     @ApiModelProperty(value = "备注")
     @NotBlank(message = "备注不能为空")
     private String description;

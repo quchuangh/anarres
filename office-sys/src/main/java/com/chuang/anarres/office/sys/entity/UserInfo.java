@@ -9,6 +9,8 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+
+import com.chuang.anarres.enums.Language;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -81,7 +83,7 @@ public class UserInfo implements Serializable {
      * 语言
      */
     @TableField("language")
-    private Integer language;
+    private Language language;
 
     /**
      * 是否删除

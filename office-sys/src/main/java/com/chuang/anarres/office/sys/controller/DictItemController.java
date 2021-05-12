@@ -1,7 +1,6 @@
 package com.chuang.anarres.office.sys.controller;
 
 import com.chuang.anarres.office.sys.model.co.DictItemCO;
-import com.chuang.anarres.office.sys.model.ro.AbilityRO;
 import com.chuang.anarres.office.sys.model.ro.DictItemRO;
 import com.chuang.anarres.office.sys.model.uo.DictItemUO;
 import com.chuang.anarres.office.sys.entity.DictItem;
@@ -9,9 +8,12 @@ import com.chuang.anarres.office.sys.model.uo.TreeMoveUO;
 import com.chuang.anarres.office.sys.service.IDictItemService;
 import com.chuang.anarres.office.sys.controller.basic.ICrudController;
 import javax.annotation.Resource;
+import javax.validation.Valid;
 
 
 import com.chuang.tauceti.support.Result;
+import com.chuang.tauceti.support.exception.BusinessException;
+import com.chuang.tauceti.tools.basic.reflect.ClassKit;
 import com.chuang.tauceti.tools.basic.reflect.ConvertKit;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -34,6 +36,7 @@ import java.util.stream.Collectors;
 public class DictItemController implements ICrudController<DictItemCO, DictItemRO, DictItemUO, DictItem, IDictItemService> {
 
     @Resource private IDictItemService service;
+
 
     @PostMapping("/move")
     @ApiOperation("移动菜单")

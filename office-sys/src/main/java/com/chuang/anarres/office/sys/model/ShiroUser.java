@@ -1,5 +1,7 @@
 package com.chuang.anarres.office.sys.model;
 
+import com.chuang.anarres.enums.Gender;
+import com.chuang.anarres.enums.Language;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -45,10 +47,10 @@ public class ShiroUser {
     private LocalDate birthday;
 
     @ApiModelProperty("性别")
-    private Byte gender;
+    private Gender gender;
 
     @ApiModelProperty("语言")
-    private Integer language;
+    private Language language;
 
     @ApiModelProperty("绑定IP")
     private String ipBound;
