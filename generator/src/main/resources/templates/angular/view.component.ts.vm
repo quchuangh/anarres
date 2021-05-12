@@ -53,10 +53,6 @@ export class ${cfg.table.angularCompClassName}ViewComponent implements OnInit {
                 readOnly: true,
                 ui: {
                     widget: 'string',
-                    placeholder: '角色唯一标识,不可重复,由字母,下划线,数字组合',
-                    errors: {
-                        'pattern': '仅支持输入字母、下划线、数字'
-                    }
                 }
             },
             #end

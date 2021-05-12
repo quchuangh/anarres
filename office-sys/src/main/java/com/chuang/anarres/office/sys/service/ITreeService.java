@@ -2,7 +2,6 @@ package com.chuang.anarres.office.sys.service;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.toolkit.SqlHelper;
-import com.chuang.anarres.office.sys.entity.Menu;
 import com.chuang.anarres.office.sys.entity.api.TreeModel;
 import com.chuang.tauceti.support.exception.BusinessException;
 import com.chuang.urras.rowquery.IRowQueryService;
@@ -101,7 +100,7 @@ public interface ITreeService<T extends TreeModel> extends IRowQueryService<T> {
         if(tree.getParentId() == 0) {// 表示是根目录
             parentPath = "0/";
         } else {
-            T parent = (T) findById(tree.getParentId())
+            T parent = findById(tree.getParentId())
                     .orElseThrow(() -> new BusinessException("父级节点无法找到"));
             parentPath = parent.getParents() + "/" + parent.getId() + "/";
         }

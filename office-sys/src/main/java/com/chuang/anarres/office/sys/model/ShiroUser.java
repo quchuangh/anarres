@@ -1,9 +1,5 @@
 package com.chuang.anarres.office.sys.model;
 
-import com.chuang.anarres.enums.Language;
-import com.chuang.anarres.enums.UserStatus;
-import com.chuang.tauceti.support.enums.Gender;
-import com.chuang.tauceti.tools.basic.collection.CollectionKit;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -20,7 +16,7 @@ public class ShiroUser {
     private String username;
 
     @ApiModelProperty("状态")
-    private UserStatus state;
+    private Byte state;
 
     @ApiModelProperty("登录次数")
     private Integer loginTimes;
@@ -49,10 +45,10 @@ public class ShiroUser {
     private LocalDate birthday;
 
     @ApiModelProperty("性别")
-    private Gender gender;
+    private Byte gender;
 
     @ApiModelProperty("语言")
-    private Language language;
+    private Integer language;
 
     @ApiModelProperty("绑定IP")
     private String ipBound;

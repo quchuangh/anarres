@@ -2,30 +2,29 @@ package com.chuang.anarres.office.sys.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
-import java.time.LocalDate;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+
+import com.chuang.anarres.office.sys.entity.api.TreeModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 用户信息 
+ * 字典项;
  * </p>
  *
  * @author chuang
- * @since 2020-12-20
+ * @since 2021-05-11
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
-@TableName("sys_user_info")
-public class UserInfo implements Serializable {
+@TableName("sys_dict_item")
+public class DictItem implements Serializable, TreeModel {
 
     private static final long serialVersionUID=1L;
 
@@ -36,65 +35,52 @@ public class UserInfo implements Serializable {
     private Integer id;
 
     /**
-     * 用户名
+     * 名称
      */
-    @TableField("username")
-    private String username;
+    @TableField("label")
+    private String label;
 
     /**
-     * 手机号
+     * 值
      */
-    @TableField("phone")
-    private String phone;
+    @TableField("val")
+    private Byte val;
 
     /**
-     * 头像
+     * 排序
      */
-    @TableField("avatar")
-    private String avatar;
+    @TableField("sort_rank")
+    private Integer sortRank;
 
     /**
-     * 昵称
+     * 类型编码
      */
-    @TableField("name")
-    private String name;
+    @TableField("dict_type_code")
+    private String dictTypeCode;
 
     /**
-     * 邮箱
+     * 父id
      */
-    @TableField("email")
-    private String email;
+    @TableField("parent_id")
+    private Integer parentId;
 
     /**
-     * 生日
+     * 路径
      */
-    @TableField("birthday")
-    private LocalDate birthday;
+    @TableField("parents")
+    private String parents;
 
     /**
-     * 性别
+     * 备注
      */
-    @TableField("gender")
-    private Integer gender;
+    @TableField("description")
+    private String description;
 
     /**
-     * 语言
+     * 是否启用
      */
-    @TableField("language")
-    private Integer language;
-
-    /**
-     * 是否删除
-     */
-    @TableField("deleted")
-    @TableLogic
-    private Boolean deleted;
-
-    /**
-     * 乐观锁
-     */
-    @TableField("revision")
-    private Integer revision;
+    @TableField("enabled")
+    private Boolean enabled;
 
     /**
      * 创建人

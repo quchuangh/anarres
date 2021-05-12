@@ -36,6 +36,10 @@ public class MenuCO {
     @NotBlank
     private String link;
 
+    @ApiModelProperty("外部链接")
+    @NotNull
+    private String externalLink;
+
     @ApiModelProperty(value = "target", required = true)
     @NotBlank
     private String target;

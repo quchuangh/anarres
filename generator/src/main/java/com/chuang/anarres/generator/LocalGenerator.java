@@ -6,14 +6,13 @@ import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.generator.config.po.TableFill;
 import com.baomidou.mybatisplus.generator.engine.VelocityTemplateEngine;
+import com.chuang.anarres.enums.Gender;
 import com.chuang.anarres.enums.Language;
 import com.chuang.anarres.enums.RelationType;
 import com.chuang.anarres.enums.UserStatus;
 import com.chuang.tauceti.generator.GenType;
 import com.chuang.tauceti.generator.Generator;
 import com.chuang.tauceti.generator.config.GenConfig;
-import com.chuang.tauceti.support.enums.Bank;
-import com.chuang.tauceti.support.enums.Gender;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -64,7 +63,6 @@ public class LocalGenerator {
                 .tablePrefix("t_", "sys_") //表前缀，生成的对象都会去掉前缀
                 .includeTables(tables)
                 // 添加枚举字段的类型转化，如果生成的表格字段正好在下面的所有配置中，则会将类型改为相应的枚举类型
-                .enums(Bank.class, "t_payment_deal:bank", "t_bank_card:bank", "t_withdraw_deal:bank")
                 .enums(Gender.class, "sys_user:gender", "sys_user_info:gender")
                 .enums(Language.class, "sys_user:language", "sys_user_info:language", "sys_i18n:language")
                 .enums(RelationType.class, "sys_relation:type")
@@ -80,7 +78,7 @@ public class LocalGenerator {
                             new TableFill("created_time", FieldFill.INSERT)
                     ));
                 })
-                .mvn(true) // 是否为maven工程,目前没什么用，没有任何generator对是否为maven项目做了判断。
+                .mvn(false) // 是否为单maven工程。
                 .debug() // 是否打印debug日志
                 .lookup("com.chuang.anarres.generator.impl", Generator.class)   //寻找Generator实现类
 //                .addImpl(new AngularComponentTs()) // 直接扫描实现，不用加。

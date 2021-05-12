@@ -2,11 +2,9 @@ package com.chuang.anarres.office.sys.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
-import java.time.LocalDate;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
 import lombok.Data;
@@ -15,17 +13,17 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 用户信息 
+ * 字典类型;
  * </p>
  *
  * @author chuang
- * @since 2020-12-20
+ * @since 2021-05-11
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("sys_user_info")
-public class UserInfo implements Serializable {
+@TableName("sys_dict_type")
+public class DictType implements Serializable {
 
     private static final long serialVersionUID=1L;
 
@@ -36,22 +34,16 @@ public class UserInfo implements Serializable {
     private Integer id;
 
     /**
-     * 用户名
+     * 编码
      */
-    @TableField("username")
-    private String username;
+    @TableField("code")
+    private String code;
 
     /**
-     * 手机号
+     * 是否启用
      */
-    @TableField("phone")
-    private String phone;
-
-    /**
-     * 头像
-     */
-    @TableField("avatar")
-    private String avatar;
+    @TableField("enabled")
+    private Boolean enabled;
 
     /**
      * 昵称
@@ -60,41 +52,10 @@ public class UserInfo implements Serializable {
     private String name;
 
     /**
-     * 邮箱
+     * 说明
      */
-    @TableField("email")
-    private String email;
-
-    /**
-     * 生日
-     */
-    @TableField("birthday")
-    private LocalDate birthday;
-
-    /**
-     * 性别
-     */
-    @TableField("gender")
-    private Integer gender;
-
-    /**
-     * 语言
-     */
-    @TableField("language")
-    private Integer language;
-
-    /**
-     * 是否删除
-     */
-    @TableField("deleted")
-    @TableLogic
-    private Boolean deleted;
-
-    /**
-     * 乐观锁
-     */
-    @TableField("revision")
-    private Integer revision;
+    @TableField("description")
+    private String description;
 
     /**
      * 创建人

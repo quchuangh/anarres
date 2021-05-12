@@ -1,9 +1,9 @@
 package com.chuang.anarres.office.sys;
 
+import com.chuang.anarres.enums.Language;
 import com.chuang.anarres.office.sys.entity.I18n;
 import com.chuang.anarres.office.sys.event.I18nUpdatedEvent;
 import com.chuang.anarres.office.sys.service.II18nService;
-import com.chuang.anarres.enums.Language;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.MessageSource;

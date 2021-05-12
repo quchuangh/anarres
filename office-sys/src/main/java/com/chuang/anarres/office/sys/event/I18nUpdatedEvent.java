@@ -5,7 +5,7 @@ import org.springframework.context.ApplicationEvent;
 
 public class I18nUpdatedEvent extends ApplicationEvent {
 
-    private I18nType type;
+    private final I18nType type;
 
     public I18nUpdatedEvent(Object source, I18nType type) {
         super(source);
