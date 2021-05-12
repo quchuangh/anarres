@@ -14,6 +14,7 @@
         [optionCell]="option"
         [dataSource]="dataSource"
         [searchSchema]="schema"
+        [filterHand]="filterHand"
         (pageIndexChange)="onPageIndexChange($event)"
         (gridReady)="onGridReady($event)"
     >
