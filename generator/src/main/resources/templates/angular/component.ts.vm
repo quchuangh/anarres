@@ -90,6 +90,7 @@ export class ${cfg.table.angularCompClassName}Component implements OnInit {
                 private modal: NzModalService) {
         this.gridOptions = {
             enableCharts: false,
+            sideBar: 'default',
             columnDefs: this.columnDefs,
             enableRangeSelection: true,
             getRowNodeId: this.idGetter,
