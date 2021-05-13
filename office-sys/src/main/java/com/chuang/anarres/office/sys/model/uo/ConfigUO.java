@@ -30,8 +30,8 @@ public class ConfigUO implements Serializable {
     @NotBlank(message = "值不能为空")
     private String value;
 
-    @ApiModelProperty(value = "值类型")
-    @NotBlank(message = "值类型不能为空")
-    private String valueType;
+    @ApiModelProperty(value = "值校验")
+    @NotBlank(message = "值校验不能为空")
+    private String valueRegex;
 
 }

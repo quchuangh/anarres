@@ -11,6 +11,7 @@ import com.chuang.anarres.office.sys.service.IApiService;
 import com.chuang.tauceti.support.exception.SystemException;
 import com.chuang.tauceti.tools.basic.ObjectKit;
 import com.chuang.tauceti.tools.basic.StringKit;
+import com.chuang.urras.rowquery.RowQuery;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -110,15 +111,26 @@ public class ApiFieldAclAspect implements ApplicationListener<ApiUpdatedEvent> {
         if(null == api) {
             return object;
         }
-
         List<ApiFieldAcl> aclList = apiFieldAclMap.get(code);
 
         for(ApiFieldAcl acl : aclList) {
             if(acl.getIncome() == income && user.canAll(acl.roles(), acl.abilities())) {
-                aclObject(acl, object);
+                if(object instanceof RowQuery) {
+                    aclRowQuery(acl, (RowQuery) object);
+                } else {
+                    aclObject(acl, object);
+                }
             }
         }
         return object;
+    }
+
+    private void aclRowQuery(ApiFieldAcl acl, RowQuery object) {
+        String field = acl.getFieldEl().replace("@", "").replace(" ", "");
+        RowQuery.Filter[] filters = (RowQuery.Filter[])Arrays.stream(object.getFilters())
+                .filter(filter -> !field.equals(filter.getField()))
+                .toArray();
+        object.setFilters(filters);
     }
 
     private void aclObject(ApiFieldAcl acl, Object object) {

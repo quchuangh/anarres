@@ -28,8 +28,8 @@ public class ConfigRO implements Serializable {
     private String code;
     @ApiModelProperty(value = "值")
     private String value;
-    @ApiModelProperty(value = "值类型")
-    private String valueType;
+    @ApiModelProperty(value = "值校验")
+    private String valueRegex;
     @ApiModelProperty(value = "创建人")
     private String creator;
     @ApiModelProperty(value = "创建时间")

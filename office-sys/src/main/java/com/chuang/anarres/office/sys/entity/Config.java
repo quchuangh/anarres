@@ -52,8 +52,8 @@ public class Config implements Serializable {
     /**
      * 值类型
      */
-    @TableField("value_type")
-    private String valueType;
+    @TableField("value_regex")
+    private String valueRegex;
 
     /**
      * 创建人
