@@ -27,6 +27,8 @@ public interface II18nService extends IRowQueryService<I18n> {
 
     boolean save(I18nType type, String i18n, String message, Language language);
 
+    String md5(I18nType type, String i18n, Language language);
+
     boolean delete(I18nType type, String i18n);
 
     boolean delete(I18nType type, String i18n, Language language);

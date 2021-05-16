@@ -39,12 +39,17 @@ public class I18nServiceImpl extends RowQueryService<I18nMapper, I18n> implement
         boolean success =  findOne(type, i18n, language)
                 .map(n -> updateById(n.setMessage(message)))
                 .orElseGet(() -> {
-                    String md5 = HashKit.md5(type + ":" + i18n + ":" + language);
+                    String md5 = md5(type, i18n, language);
                     I18n o = new I18n().setI18n(i18n).setTypeGroup(type).setLanguage(language).setMessage(message).setMd5(md5).setCreator("admin");
                     return save(o);
                 });
         applicationContext.publishEvent(new I18nUpdatedEvent(this, type));
         return success;
+    }
+
+    @Override
+    public String md5(I18nType type, String i18n, Language language) {
+        return HashKit.md5(type + ":" + i18n + ":" + language);
     }
 
     @Override

@@ -3,17 +3,20 @@ package com.chuang.anarres.office.sys.controller;
 
 import com.alibaba.fastjson.JSONAware;
 import com.alibaba.fastjson.JSONObject;
+import com.chuang.anarres.enums.I18nType;
+import com.chuang.anarres.enums.Language;
 import com.chuang.anarres.office.sys.controller.basic.UnsafeCrudController;
 import com.chuang.anarres.office.sys.entity.I18n;
 import com.chuang.anarres.office.sys.service.II18nService;
-import com.chuang.anarres.enums.I18nType;
-import com.chuang.anarres.enums.Language;
 import com.chuang.tauceti.support.Result;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -31,7 +34,8 @@ import java.util.Optional;
 @Slf4j
 public class I18nController extends UnsafeCrudController<I18n, II18nService> {
 
-    @Resource private II18nService i18nService;
+    @Resource
+    private II18nService i18nService;
 
 
     @GetMapping("/json/{lang}")
@@ -43,6 +47,11 @@ public class I18nController extends UnsafeCrudController<I18n, II18nService> {
     }
 
 
+    @GetMapping("/language")
+    public Result<Language[]> language() {
+        return Result.success(Language.values());
+    }
+
     @GetMapping("/client/json/{lang}")
     public String clientLang(@PathVariable("lang") String lang) {
         log.info(lang);
@@ -52,7 +61,7 @@ public class I18nController extends UnsafeCrudController<I18n, II18nService> {
         Optional<List<I18n>> list = Language.parse(args[0])
                 .map(language -> i18nService.lambdaQuery().eq(I18n::getTypeGroup, I18nType.CLIENT).eq(I18n::getLanguage, language).list());
 
-        if(args.length > 1 && "properties".equals(args[1])) {
+        if (args.length > 1 && "properties".equals(args[1])) {
             return list.map(this::toProperties).orElse("");
         } else {
             return list.map(this::toJSON).map(JSONAware::toJSONString).orElse("");
@@ -61,16 +70,35 @@ public class I18nController extends UnsafeCrudController<I18n, II18nService> {
 
     @GetMapping("/all/client")
     @RequiresPermissions("i18n:read")
-    public Result<JSONObject> client() {
+    public Result<List<I18n>> client() {
         List<I18n> i18ns = i18nService.lambdaQuery().eq(I18n::getTypeGroup, I18nType.CLIENT).list();
-
-        return Result.success();
+        return Result.success(i18ns);
     }
 
     @GetMapping("/all/server")
     @RequiresPermissions("i18n:read")
     public Result<List<I18n>> server() {
         return Result.success(i18nService.lambdaQuery().eq(I18n::getTypeGroup, I18nType.SERVER).list());
+    }
+
+    @DeleteMapping(value = "/delete/{i18n}")
+    @ApiOperation("根据i18n删除记录")
+    @ResponseBody
+    public Result<Void> delete(@PathVariable("i18n") String i18n) {
+        checkPermission("delete");
+        return Result.whether(service().remove(new I18n().setI18n(i18n)));
+    }
+
+
+
+    @PostMapping(value = "/create/language")
+    @ApiOperation("创建国际化配置")
+    @ResponseBody
+    public Result<String> createAndGetMd5(@Valid @RequestBody @ApiParam I18n uo) {
+        checkPermission("create");
+        i18nService.save(uo.getTypeGroup(), uo.getI18n(), uo.getMessage(), uo.getLanguage());
+        String md5 = i18nService.md5(uo.getTypeGroup(), uo.getI18n(), uo.getLanguage());
+        return Result.success(md5);
     }
 
 
@@ -96,10 +124,10 @@ public class I18nController extends UnsafeCrudController<I18n, II18nService> {
 //        ("\"" + key.replaceAll("\\.", "\".\"") + "\"")
         String[] props = key.split("\\.");
         JSONObject last = obj;
-        for(int i = 0; i < props.length - 1; i++) {
-            if(!last.containsKey(props[i]) ) {
+        for (int i = 0; i < props.length - 1; i++) {
+            if (!last.containsKey(props[i])) {
                 last.put(props[i], new JSONObject());
-            } else if(!(last.get(props[i]) instanceof JSONObject)) {
+            } else if (!(last.get(props[i]) instanceof JSONObject)) {
                 String v = last.getString(props[i]);
                 last.put(props[i], new JSONObject());
                 last.getJSONObject(props[i]).put("$", v);
