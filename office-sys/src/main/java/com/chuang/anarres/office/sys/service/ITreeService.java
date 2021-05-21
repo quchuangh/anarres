@@ -66,7 +66,7 @@ public interface ITreeService<T extends TreeModel> extends IRowQueryService<T> {
         T from = findById(fromId).orElseThrow(() -> new BusinessException("节点{}不存在", fromId));
 
         from.setParentId(to.getId());
-        from.setParents(to.getParents() + "/" + to.getId());
+        from.setParents(to.getParents() + to.getId());
 
         // 获取 to 内部最后一个菜单的rank值，并对其加1，如果没有，则直接去默认rank
         // 放在最后
@@ -102,7 +102,7 @@ public interface ITreeService<T extends TreeModel> extends IRowQueryService<T> {
         } else {
             T parent = findById(tree.getParentId())
                     .orElseThrow(() -> new BusinessException("父级节点无法找到"));
-            parentPath = parent.getParents() + "/" + parent.getId() + "/";
+            parentPath = parent.getParents() + parent.getId() + "/";
         }
 
         tree.setParents(parentPath);

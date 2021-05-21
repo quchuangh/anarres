@@ -1,4 +1,4 @@
-<page-header-wrapper>
+<page-header-wrapper  [autoTitle]="false">
 
     <!-- [colACLTmpl]="'POST:/TEST{}:OUT'"  被所有列添加一个权限末班{}是列名的占位-->
     <ngx-grid-table
