@@ -21,6 +21,9 @@ import javax.validation.constraints.NotNull;
 @Accessors(chain = true)
 @ApiModel(value="ConfigUO对象", description="系统配置表 ")
 public class ConfigUO implements Serializable {
+    @ApiModelProperty(value = "ID")
+    @NotNull(message = "ID不能为空")
+    private Integer id;
 
     @ApiModelProperty(value = "编码")
     @NotBlank(message = "编码不能为空")
