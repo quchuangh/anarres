@@ -37,7 +37,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @ControllerAdvice
-public class BaseControllerAdvice {
+public class AnrControllerAdvice {
 
     @Resource
     private MessageSource messageSource;

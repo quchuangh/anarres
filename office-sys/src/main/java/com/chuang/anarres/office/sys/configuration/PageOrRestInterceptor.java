@@ -14,7 +14,7 @@ public class PageOrRestInterceptor implements HandlerInterceptor {
     public static final String PAGE_VIEW_ATTR = "[[IS_PAGE_VIEW]]";
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         if (!(handler instanceof HandlerMethod)) {
             return true;
         }
