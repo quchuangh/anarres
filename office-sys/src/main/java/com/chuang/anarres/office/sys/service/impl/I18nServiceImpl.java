@@ -1,23 +1,18 @@
 package com.chuang.anarres.office.sys.service.impl;
 
-import com.alibaba.fastjson.JSONObject;
-import com.chuang.anarres.office.sys.event.I18nUpdatedEvent;
-import com.chuang.anarres.office.sys.service.II18nService;
-import com.chuang.anarres.office.sys.OperatorManager;
-import com.chuang.anarres.office.sys.entity.I18n;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.chuang.anarres.enums.I18nType;
 import com.chuang.anarres.enums.Language;
+import com.chuang.anarres.office.sys.OperatorManager;
+import com.chuang.anarres.office.sys.entity.I18n;
+import com.chuang.anarres.office.sys.event.I18nUpdatedEvent;
 import com.chuang.anarres.office.sys.mapper.I18nMapper;
+import com.chuang.anarres.office.sys.service.II18nService;
 import com.chuang.tauceti.tools.basic.HashKit;
-import com.chuang.tauceti.tools.basic.StringKit;
-import com.chuang.urras.rowquery.RowQueryService;
-import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * <p>
@@ -28,7 +23,7 @@ import java.util.List;
  * @since 2020-12-21
  */
 @Service
-public class I18nServiceImpl extends RowQueryService<I18nMapper, I18n> implements II18nService {
+public class I18nServiceImpl extends ServiceImpl<I18nMapper, I18n> implements II18nService {
 
     @Resource private OperatorManager currentUser;
     @Resource private ApplicationContext applicationContext;

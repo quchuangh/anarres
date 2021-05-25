@@ -4,7 +4,7 @@ import com.chuang.tauceti.tools.basic.reflect.ClassKit;
 import com.chuang.urras.rowquery.IRowQueryService;
 
 public interface ICrudController<CO, RO, UO, E, S extends IRowQueryService<E>> extends
-        ICreateController<CO, E, S>,
+        ICreateController<CO, RO, E, S>,
         IRetrieveController<RO, E, S>,
         IUpdateController<UO, E, S>,
         IDeleteController<E, S> {

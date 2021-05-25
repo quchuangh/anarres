@@ -1,9 +1,9 @@
 package com.chuang.anarres.office.sys.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.chuang.anarres.office.sys.entity.DictType;
 import com.chuang.anarres.office.sys.mapper.DictTypeMapper;
 import com.chuang.anarres.office.sys.service.IDictTypeService;
-import com.chuang.urras.rowquery.RowQueryService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2021-05-11
  */
 @Service
-public class DictTypeServiceImpl extends RowQueryService<DictTypeMapper, DictType> implements IDictTypeService {
+public class DictTypeServiceImpl extends ServiceImpl<DictTypeMapper, DictType> implements IDictTypeService {
 
 }

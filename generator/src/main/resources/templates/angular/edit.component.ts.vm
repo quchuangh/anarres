@@ -99,7 +99,7 @@ export class ${cfg.table.angularCompClassName}EditComponent implements OnInit {
     }
 
     save(value: any) {
-        this.http.post(`${cfg.table.angularApiPath}/edit`, value).subscribe(res => {
+        this.http.post(`${cfg.table.angularApiPath}/update`, value).subscribe(res => {
             this.msgSrv.success('修改成功');
             this.modal.close(res);
         });

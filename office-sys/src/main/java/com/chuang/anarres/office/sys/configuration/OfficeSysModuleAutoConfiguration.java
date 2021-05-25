@@ -4,10 +4,16 @@ import com.chuang.anarres.office.sys.OperatorManager;
 import com.chuang.tauceti.shiro.spring.web.jwt.configuration.ShiroJwtAutoConfiguration;
 import com.chuang.urras.rowquery.RowQueryConverter;
 import com.chuang.urras.rowquery.handlers.AutoTimeHandler;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.deser.std.StdScalarDeserializer;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -18,6 +24,7 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -66,5 +73,21 @@ public class OfficeSysModuleAutoConfiguration implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new PageOrRestInterceptor());
+    }
+
+    @Bean
+    public Jackson2ObjectMapperBuilderCustomizer jackson2ObjectMapperBuilderCustomizer() {
+        return jacksonObjectMapperBuilder -> {
+            // 为 String 类型自定义反序列化操作
+            jacksonObjectMapperBuilder
+                    .deserializerByType(String.class, new StdScalarDeserializer<Object>(String.class) {
+                        @Override
+                        public String deserialize(JsonParser jsonParser, DeserializationContext ctx)
+                                throws IOException {
+                            // 去除前后空格
+                            return StringUtils.trimWhitespace(jsonParser.getValueAsString());
+                        }
+                    });
+        };
     }
 }

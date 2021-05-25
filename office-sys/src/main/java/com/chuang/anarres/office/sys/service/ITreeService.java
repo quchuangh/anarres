@@ -23,7 +23,7 @@ public interface ITreeService<T extends TreeModel> extends IRowQueryService<T> {
         from.setSortRank(to.getSortRank() + 1);
 
         List<T> greatList = list(
-                Wrappers.lambdaQuery(currentModelClass())
+                Wrappers.lambdaQuery(getEntityClass())
                         .eq(T::getParentId, to.getParentId())
                         .gt(T::getSortRank, to.getSortRank())
         );
@@ -47,7 +47,7 @@ public interface ITreeService<T extends TreeModel> extends IRowQueryService<T> {
 
 
         List<T> lessList = list(
-                Wrappers.lambdaQuery(currentModelClass())
+                Wrappers.lambdaQuery(getEntityClass())
                         .eq(T::getParentId, to.getParentId())
                         .lt(T::getSortRank, to.getSortRank())
         );
@@ -71,7 +71,7 @@ public interface ITreeService<T extends TreeModel> extends IRowQueryService<T> {
         // 获取 to 内部最后一个菜单的rank值，并对其加1，如果没有，则直接去默认rank
         // 放在最后
         int rank = findOne(
-                Wrappers.lambdaQuery(currentModelClass())
+                Wrappers.lambdaQuery(getEntityClass())
                     .select(T::getSortRank)
                     .eq(T::getParentId, to.getId())
                     .orderByDesc(T::getSortRank)

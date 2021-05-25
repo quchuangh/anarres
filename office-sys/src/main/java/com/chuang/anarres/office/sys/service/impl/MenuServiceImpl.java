@@ -1,6 +1,8 @@
 package com.chuang.anarres.office.sys.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.chuang.anarres.enums.RoleType;
 import com.chuang.anarres.office.sys.entity.Menu;
 import com.chuang.anarres.office.sys.mapper.MenuMapper;
 import com.chuang.anarres.office.sys.model.bo.AclBO;
@@ -12,11 +14,13 @@ import com.chuang.tauceti.tools.basic.StringKit;
 import com.chuang.tauceti.tools.basic.reflect.ConvertKit;
 import com.chuang.tauceti.tools.basic.tree.Node;
 import com.chuang.tauceti.tools.basic.tree.NodeBuilder;
-import com.chuang.urras.rowquery.RowQueryService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.*;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -28,7 +32,7 @@ import java.util.stream.Collectors;
  * @since 2020-12-20
  */
 @Service
-public class MenuServiceImpl extends RowQueryService<MenuMapper, Menu> implements IMenuService {
+public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IMenuService {
 
     @Resource private IUserFastMenuService userFastMenuService;
 

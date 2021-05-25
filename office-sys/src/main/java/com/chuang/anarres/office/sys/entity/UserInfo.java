@@ -1,15 +1,12 @@
 package com.chuang.anarres.office.sys.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.time.LocalDate;
-import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
 
+import com.chuang.anarres.enums.Gender;
 import com.chuang.anarres.enums.Language;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -77,7 +74,7 @@ public class UserInfo implements Serializable {
      * 性别
      */
     @TableField("gender")
-    private Integer gender;
+    private Gender gender;
 
     /**
      * 语言
@@ -88,14 +85,15 @@ public class UserInfo implements Serializable {
     /**
      * 是否删除
      */
-    @TableField("deleted")
+    @TableField(value = "deleted", fill = FieldFill.INSERT)
     @TableLogic
     private Boolean deleted;
 
     /**
      * 乐观锁
      */
-    @TableField("revision")
+    @Version
+    @TableField(value = "revision", fill = FieldFill.INSERT)
     private Integer revision;
 
     /**

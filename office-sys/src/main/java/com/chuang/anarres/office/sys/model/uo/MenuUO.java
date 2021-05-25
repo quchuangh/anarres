@@ -1,19 +1,20 @@
 package com.chuang.anarres.office.sys.model.uo;
 
-import com.chuang.anarres.office.sys.model.bo.AclBO;
-import com.chuang.anarres.office.sys.model.ro.TreeRO;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Data
 public class MenuUO {
 
-    @ApiModelProperty("节点ID")
+    @ApiModelProperty(value = "ID")
+    @NotNull(message = "ID不能为空")
     private Integer id;
+
     @ApiModelProperty("父节点ID")
+    @NotNull(message = "父节点ID不能为空")
     private Integer parentId;
 
     @ApiModelProperty("菜单唯一值")

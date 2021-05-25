@@ -1,6 +1,5 @@
 package com.chuang.anarres.office.sys.model.ro;
 
-import com.chuang.anarres.office.sys.model.bo.AclBO;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

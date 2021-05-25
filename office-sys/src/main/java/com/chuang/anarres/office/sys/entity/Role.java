@@ -7,6 +7,8 @@ import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+
+import com.chuang.anarres.enums.RoleType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -56,6 +58,12 @@ public class Role implements Serializable {
      */
     @TableField("enabled")
     private Boolean enabled;
+
+    /**
+     * 角色类型
+     */
+    @TableField("role_type")
+    private RoleType roleType;
 
     /**
      * 创建人

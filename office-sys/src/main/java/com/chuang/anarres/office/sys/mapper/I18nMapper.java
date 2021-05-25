@@ -1,5 +1,6 @@
 package com.chuang.anarres.office.sys.mapper;
 
+import com.baomidou.mybatisplus.annotation.InterceptorIgnore;
 import com.chuang.anarres.office.sys.entity.I18n;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author chuang
  * @since 2020-12-21
  */
+@InterceptorIgnore(illegalSql = "true")
 public interface I18nMapper extends BaseMapper<I18n> {
 
 }

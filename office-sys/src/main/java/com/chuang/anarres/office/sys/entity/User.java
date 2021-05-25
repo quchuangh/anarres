@@ -98,7 +98,7 @@ public class User implements Serializable {
     /**
      * 是否删除
      */
-    @TableField("deleted")
+    @TableField(value = "deleted", fill = FieldFill.INSERT)
     @TableLogic
     private Boolean deleted;
 

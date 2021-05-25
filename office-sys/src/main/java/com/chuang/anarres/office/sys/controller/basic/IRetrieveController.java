@@ -22,7 +22,7 @@ public interface IRetrieveController<RO, E, S extends IRowQueryService<E>> exten
     @ApiOperation("根据RowQuery对象进行查询")
     @ApiImplicitParam(name = "rowQuery", value = "查询记录", required = true, dataTypeClass = RowQuery.class)
     default IPage<RO> query(@RequestBody RowQuery rowQuery) {
-        checkPermission("read");
+        checkPermission("query");
         return service().pageByRowQuery(rowQuery).convert(e -> {
             RO ro = ClassKit.newInstance(readEntityClass()).orElseThrow(() -> new BusinessException("创建RO对象失败"));
             return ConvertKit.toBean(e, () -> ro);

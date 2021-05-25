@@ -2,6 +2,7 @@ package com.chuang.anarres.office.sys.model;
 
 import com.chuang.anarres.enums.Gender;
 import com.chuang.anarres.enums.Language;
+import com.chuang.anarres.enums.UserStatus;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -18,7 +19,7 @@ public class ShiroUser {
     private String username;
 
     @ApiModelProperty("状态")
-    private Byte state;
+    private UserStatus state;
 
     @ApiModelProperty("登录次数")
     private Integer loginTimes;

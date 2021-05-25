@@ -1,7 +1,10 @@
 package com.chuang.anarres.office.sys.service;
 
+import com.chuang.anarres.enums.RoleType;
 import com.chuang.anarres.office.sys.entity.Role;
 import com.chuang.urras.rowquery.IRowQueryService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,11 @@ import com.chuang.urras.rowquery.IRowQueryService;
  */
 public interface IRoleService extends IRowQueryService<Role> {
 
+    List<Role> findAllRoles(String username);
+
+    List<Role> findUserRoles(String username);
+
+    default List<Role> findUserRoles() {
+        return lambdaQuery().eq(Role::getRoleType, RoleType.USER_ROLE).list();
+    }
 }

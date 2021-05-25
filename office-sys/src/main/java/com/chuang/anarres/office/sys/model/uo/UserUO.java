@@ -24,6 +24,10 @@ import javax.validation.constraints.NotNull;
 @ApiModel(value="UserUO对象", description="用户 ")
 public class UserUO implements Serializable {
 
+    @ApiModelProperty(value = "ID")
+    @NotNull(message = "ID不能为空")
+    private Integer id;
+
     @ApiModelProperty(value = "账号")
     @NotBlank(message = "账号不能为空")
     private String username;

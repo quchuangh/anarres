@@ -69,14 +69,14 @@ public class I18nController extends UnsafeCrudController<I18n, II18nService> {
     }
 
     @GetMapping("/all/client")
-    @RequiresPermissions("i18n:read")
+    @RequiresPermissions("i18n:query")
     public Result<List<I18n>> client() {
         List<I18n> i18ns = i18nService.lambdaQuery().eq(I18n::getTypeGroup, I18nType.CLIENT).list();
         return Result.success(i18ns);
     }
 
     @GetMapping("/all/server")
-    @RequiresPermissions("i18n:read")
+    @RequiresPermissions("i18n:query")
     public Result<List<I18n>> server() {
         return Result.success(i18nService.lambdaQuery().eq(I18n::getTypeGroup, I18nType.SERVER).list());
     }

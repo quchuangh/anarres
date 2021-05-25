@@ -75,7 +75,9 @@ public class LocalGenerator {
                             new TableFill("updater", FieldFill.INSERT_UPDATE),
                             new TableFill("updated_time", FieldFill.INSERT_UPDATE),
                             new TableFill("creator", FieldFill.INSERT),
-                            new TableFill("created_time", FieldFill.INSERT)
+                            new TableFill("created_time", FieldFill.INSERT),
+                            new TableFill("deleted", FieldFill.INSERT),
+                            new TableFill("revision", FieldFill.INSERT)
                     ));
                 })
                 .mvn(false) // 是否为单maven工程。

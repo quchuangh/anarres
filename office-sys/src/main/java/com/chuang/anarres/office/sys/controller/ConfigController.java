@@ -36,7 +36,7 @@ public class ConfigController implements ICrudController<ConfigCO, ConfigRO, Con
     @Resource private IConfigService service;
 
     @GetMapping("/all")
-    @RequiresPermissions("config:read")
+    @RequiresPermissions("sys-config:query")
     public Result<List<ConfigRO>> all(String like) {
         if(StringKit.isBlank(like)) {
             return Result.success(service.list())
@@ -54,7 +54,7 @@ public class ConfigController implements ICrudController<ConfigCO, ConfigRO, Con
 
     @Override
     public String basePermission() {
-        return "config:";
+        return "sys-config:";
     }
 
 }

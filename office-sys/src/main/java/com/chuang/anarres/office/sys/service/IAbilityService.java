@@ -4,6 +4,7 @@ import com.chuang.anarres.office.sys.entity.Ability;
 import com.chuang.anarres.office.sys.entity.LicensableAbility;
 import com.chuang.urras.rowquery.IRowQueryService;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -20,4 +21,5 @@ public interface IAbilityService extends IRowQueryService<Ability>, ITreeService
 
     List<LicensableAbility> findByRoleId(Integer roleId);
 
+    List<LicensableAbility> findByRoleIds(List<Integer> roleIds);
 }

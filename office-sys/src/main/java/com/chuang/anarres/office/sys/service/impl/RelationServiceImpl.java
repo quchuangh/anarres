@@ -1,13 +1,13 @@
 package com.chuang.anarres.office.sys.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.chuang.anarres.office.sys.entity.Relation;
-import com.chuang.anarres.office.sys.service.IRelationService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.chuang.anarres.enums.RelationType;
+import com.chuang.anarres.office.sys.entity.Relation;
 import com.chuang.anarres.office.sys.mapper.RelationMapper;
+import com.chuang.anarres.office.sys.service.IRelationService;
 import com.chuang.tauceti.support.exception.BusinessException;
 import com.chuang.tauceti.tools.basic.reflect.BeanKit;
-import com.chuang.urras.rowquery.RowQueryService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Nullable;
@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
  * @since 2020-12-20
  */
 @Service
-public class RelationServiceImpl extends RowQueryService<RelationMapper, Relation> implements IRelationService {
+public class RelationServiceImpl extends ServiceImpl<RelationMapper, Relation> implements IRelationService {
     @Override
     public void moveAndRise(Integer from, Integer to, RelationType type, @Nullable String condition1, @Nullable String condition2) {
         if (Objects.equals(from, to)) {

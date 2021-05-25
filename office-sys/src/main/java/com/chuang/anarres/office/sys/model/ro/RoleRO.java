@@ -2,10 +2,14 @@ package com.chuang.anarres.office.sys.model.ro;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import com.chuang.anarres.enums.RoleType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * <p>
@@ -24,6 +28,8 @@ public class RoleRO implements Serializable {
     private Integer id;
     @ApiModelProperty(value = "角色标识")
     private String role;
+    @ApiModelProperty(value = "角色类型")
+    private RoleType roleType;
     @ApiModelProperty(value = "名称")
     private String name;
     @ApiModelProperty(value = "简介")

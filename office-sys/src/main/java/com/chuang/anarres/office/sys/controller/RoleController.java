@@ -15,6 +15,7 @@ import com.chuang.anarres.office.sys.service.IRoleService;
 import com.chuang.tauceti.support.Result;
 import com.chuang.tauceti.tools.basic.reflect.ConvertKit;
 import io.swagger.annotations.ApiParam;
+import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,7 +47,7 @@ public class RoleController implements ICrudController<RoleCO, RoleRO, RoleUO, R
                 .map(abilities -> ConvertKit.convert(abilities, ArrayList::new, LicensableAbilityRO::new));
     }
 
-    @RequiresPermissions("ability:query")
+    @RequiresPermissions(value = {"ability:query", "role:assign"}, logical = Logical.OR)
     @GetMapping("/{roleId}/abilities/full")
     public Result<List<FullRoleAbilityRO>> fullRoleAbilities(@PathVariable @Valid Integer roleId) {
         return Result.success(assignService.fullRoleAbilities(OfficeUtils.shiroUserNotNull().getUsername(), roleId))

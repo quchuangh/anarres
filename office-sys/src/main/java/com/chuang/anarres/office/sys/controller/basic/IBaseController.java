@@ -6,6 +6,6 @@ public interface IBaseController<E, S extends IRowQueryService<E>> {
     S service();
 
     default Class<E> entityClass() {
-        return service().currentModelClass();
+        return service().getEntityClass();
     }
 }

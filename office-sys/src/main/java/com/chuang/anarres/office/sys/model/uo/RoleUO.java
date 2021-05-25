@@ -2,6 +2,8 @@ package com.chuang.anarres.office.sys.model.uo;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import com.chuang.anarres.enums.RoleType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -22,9 +24,17 @@ import javax.validation.constraints.NotNull;
 @ApiModel(value="RoleUO对象", description="角色表;角色")
 public class RoleUO implements Serializable {
 
+    @ApiModelProperty(value = "id")
+    @NotNull(message = "ID不能为空")
+    private Integer id;
+
     @ApiModelProperty(value = "角色标识")
     @NotBlank(message = "角色标识不能为空")
     private String role;
+
+    @ApiModelProperty(value = "角色类型")
+    @NotNull(message = "角色类型不能为空")
+    private RoleType roleType;
 
     @ApiModelProperty(value = "名称")
     @NotBlank(message = "名称不能为空")

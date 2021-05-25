@@ -12,7 +12,12 @@ mybatis-plus:
   type-aliases-package: com.chuang.anarres.entity
   mapper-locations: classpath*:/mapper/*.xml
   type-enums-package: com.chuang.tauceti.support.enums,com.chuang.anarres.enums,com.chuang.anarres.office.sys.enums
+  global-config:
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0
   configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     log-prefix: anarres.dao.log
 
 spring:
@@ -43,6 +48,7 @@ shiro:
     secret: abcdefghijklmnopqrstuvwxyz123456789
   web:
     enabled: true
+
   login-url: /auth/login
   anon:
     - /sys/i18n/client/**

@@ -22,6 +22,10 @@ import javax.validation.constraints.NotNull;
 @ApiModel(value="DictTypeUO对象", description="字典类型;")
 public class DictTypeUO implements Serializable {
 
+    @ApiModelProperty(value = "ID")
+    @NotNull(message = "ID不能为空")
+    private Integer id;
+
     @ApiModelProperty(value = "编码")
     @NotBlank(message = "编码不能为空")
     private String code;

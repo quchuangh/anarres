@@ -1,9 +1,9 @@
 package com.chuang.anarres.office.sys.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.chuang.anarres.office.sys.entity.UserFastMenu;
-import com.chuang.anarres.office.sys.service.IUserFastMenuService;
 import com.chuang.anarres.office.sys.mapper.UserFastMenuMapper;
-import com.chuang.urras.rowquery.RowQueryService;
+import com.chuang.anarres.office.sys.service.IUserFastMenuService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2020-12-20
  */
 @Service
-public class UserFastMenuServiceImpl extends RowQueryService<UserFastMenuMapper, UserFastMenu> implements IUserFastMenuService {
+public class UserFastMenuServiceImpl extends ServiceImpl<UserFastMenuMapper, UserFastMenu> implements IUserFastMenuService {
 
 }

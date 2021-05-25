@@ -24,7 +24,7 @@ public class ${cfg.table.classNameUo} implements Serializable {
 
 ## ----------  BEGIN 字段循环遍历  ----------
 #foreach($field in ${table.fields})
-#if(!${field.keyFlag} && !${field.fill})
+#if(!${field.fill})
 #if("$!field.comment" != "")
     @ApiModelProperty(value = "${field.comment}")
 #end
