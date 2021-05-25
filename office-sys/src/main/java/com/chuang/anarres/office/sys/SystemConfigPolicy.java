@@ -8,6 +8,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public interface SystemConfigPolicy {
+
     void clearCached();
 
     boolean contains(String key);

@@ -24,6 +24,7 @@ public class CachedDBSystemSettingPolicy implements SystemConfigPolicy {
         }
         return get(key).isPresent();
     }
+
     @Override
     public void clearCached() {
         cached.clear();

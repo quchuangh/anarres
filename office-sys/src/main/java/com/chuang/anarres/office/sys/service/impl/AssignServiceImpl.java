@@ -8,7 +8,6 @@ import com.chuang.anarres.office.sys.model.bo.FullRoleAbilityBO;
 import com.chuang.anarres.office.sys.service.IAbilityService;
 import com.chuang.anarres.office.sys.service.IAssignService;
 import com.chuang.anarres.office.sys.service.IRoleAbilityService;
-import com.chuang.tauceti.tools.basic.collection.CollectionKit;
 import com.chuang.tauceti.tools.basic.reflect.ConvertKit;
 import org.springframework.stereotype.Service;
 

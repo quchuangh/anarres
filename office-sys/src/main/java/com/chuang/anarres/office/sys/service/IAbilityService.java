@@ -22,4 +22,5 @@ public interface IAbilityService extends IRowQueryService<Ability>, ITreeService
     List<LicensableAbility> findByRoleId(Integer roleId);
 
     List<LicensableAbility> findByRoleIds(List<Integer> roleIds);
+
 }

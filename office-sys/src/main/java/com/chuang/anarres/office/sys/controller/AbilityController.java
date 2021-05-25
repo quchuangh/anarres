@@ -1,9 +1,7 @@
 package com.chuang.anarres.office.sys.controller;
 
 
-import com.chuang.anarres.office.sys.controller.basic.ICreateController;
 import com.chuang.anarres.office.sys.controller.basic.ICrudController;
-import com.chuang.anarres.office.sys.controller.basic.IDeleteController;
 import com.chuang.anarres.office.sys.entity.Ability;
 import com.chuang.anarres.office.sys.model.co.AbilityCO;
 import com.chuang.anarres.office.sys.model.ro.AbilityRO;
@@ -14,9 +12,11 @@ import com.chuang.tauceti.support.Result;
 import com.chuang.tauceti.tools.basic.reflect.ConvertKit;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -51,9 +51,24 @@ public class AbilityController implements ICrudController<AbilityCO, AbilityRO, 
         );
     }
 
+    @RequiresPermissions("ability:create")
+    @PostMapping(value = "/create")
+    @ApiOperation("创建一条数据")
+    @ResponseBody
+    public Result<?> create(@RequestBody @ApiParam @Valid AbilityCO co) {
+        Ability entity = ConvertKit.toBean(co, Ability::new);
+        return Result.whether(service().save(entity))
+                .data(ConvertKit.toBean(entity, AbilityRO::new));
+    }
+
     @Override
     public IAbilityService service() {
         return abilityService;
+    }
+
+    @Override
+    public String basePermission() {
+        return "ability:";
     }
 }
 

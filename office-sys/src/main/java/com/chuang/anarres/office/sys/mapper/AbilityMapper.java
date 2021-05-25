@@ -3,6 +3,7 @@ package com.chuang.anarres.office.sys.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.chuang.anarres.office.sys.entity.Ability;
 import com.chuang.anarres.office.sys.entity.LicensableAbility;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.ResultType;
 import org.apache.ibatis.annotations.Select;
@@ -52,4 +53,5 @@ public interface AbilityMapper extends BaseMapper<Ability> {
             "</script>")
     @ResultType(LicensableAbility.class)
     List<LicensableAbility> findByRoleIds(List<Integer> roleIds);
+
 }

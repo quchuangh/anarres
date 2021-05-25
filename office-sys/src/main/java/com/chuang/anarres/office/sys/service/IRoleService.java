@@ -5,6 +5,7 @@ import com.chuang.anarres.office.sys.entity.Role;
 import com.chuang.urras.rowquery.IRowQueryService;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * <p>
@@ -23,4 +24,9 @@ public interface IRoleService extends IRowQueryService<Role> {
     default List<Role> findUserRoles() {
         return lambdaQuery().eq(Role::getRoleType, RoleType.USER_ROLE).list();
     }
+
+    default Optional<Role> findByCode(String admin) {
+        return lambdaQuery().eq(Role::getRole, admin).oneOpt();
+    }
+
 }
