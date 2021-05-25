@@ -29,7 +29,7 @@ public class UoGen implements JavaGenerator {
     }
 
     public String outputFile(GenConfig config, TableInfo info) {
-        return "/office-sys/src/main/java/" + this.pkg(config, info).replaceAll("\\.", "/") + "/" + info.getEntityName() + "UO.java";
+        return "/office/src/main/java/" + this.pkg(config, info).replaceAll("\\.", "/") + "/" + info.getEntityName() + "UO.java";
     }
 
     @Override

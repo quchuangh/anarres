@@ -28,6 +28,6 @@ public class Controller extends ControllerGen {
     }
 
     public String outputFile(GenConfig config, TableInfo info) {
-        return "/office-sys/src/main/java" + super.outputFile(config, info);
+        return "/office/src/main/java" + super.outputFile(config, info);
     }
 }

@@ -5,6 +5,6 @@ import com.chuang.tauceti.generator.config.GenConfig;
 
 public class EntityGen extends com.chuang.tauceti.generator.impl.EntityGen {
     public String outputFile(GenConfig config, TableInfo info) {
-        return "/office-sys/src/main/java" + super.outputFile(config, info);
+        return "/core/src/main/java" + super.outputFile(config, info);
     }
 }

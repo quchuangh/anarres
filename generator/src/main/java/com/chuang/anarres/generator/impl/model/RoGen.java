@@ -30,7 +30,7 @@ public class RoGen implements JavaGenerator {
     }
 
     public String outputFile(GenConfig config, TableInfo info) {
-        return "/office-sys/src/main/java/" + this.pkg(config, info).replaceAll("\\.", "/") + "/" + info.getEntityName() + "RO.java";
+        return "/office/src/main/java/" + this.pkg(config, info).replaceAll("\\.", "/") + "/" + info.getEntityName() + "RO.java";
     }
 
     @Override

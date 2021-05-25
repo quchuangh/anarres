@@ -30,7 +30,7 @@ public class CoGen implements JavaGenerator {
     }
 
     public String outputFile(GenConfig config, TableInfo info) {
-        return "/office-sys/src/main/java/" + this.pkg(config, info).replaceAll("\\.", "/") + "/" + info.getEntityName() + "CO.java";
+        return "/office/src/main/java/" + this.pkg(config, info).replaceAll("\\.", "/") + "/" + info.getEntityName() + "CO.java";
     }
 
     @Override

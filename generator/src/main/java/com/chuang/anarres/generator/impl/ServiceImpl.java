@@ -6,6 +6,6 @@ import com.chuang.tauceti.generator.impl.ServiceImplGen;
 
 public class ServiceImpl extends ServiceImplGen {
     public String outputFile(GenConfig config, TableInfo info) {
-        return "/office-sys/src/main/java" + super.outputFile(config, info);
+        return "/core/src/main/java" + super.outputFile(config, info);
     }
 }
