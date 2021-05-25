@@ -1,2 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.chuang.anarres.office.sys.configuration.OfficeSysModuleAutoConfiguration

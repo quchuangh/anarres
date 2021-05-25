@@ -11,5 +11,17 @@
 
     <artifactId>remote-provider</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.chuang.anarres</groupId>
+            <artifactId>remote-api</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.chuang.anarres</groupId>
+            <artifactId>core</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>

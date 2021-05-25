@@ -11,5 +11,17 @@
 
     <artifactId>rest-app</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.chuang.anarres</groupId>
+            <artifactId>core</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.chuang.anarres</groupId>
+            <artifactId>anr-web-starter</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>

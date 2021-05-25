@@ -13,13 +13,13 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.chuang.anarres</groupId>
-            <artifactId>support</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
             <groupId>com.chuang.tau-ceti</groupId>
             <artifactId>tau-ceti-rowquery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.chuang.anarres</groupId>
+            <artifactId>anr-crud</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>

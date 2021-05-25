@@ -15,13 +15,14 @@
         <dependency>
             <groupId>com.chuang.anarres</groupId>
             <artifactId>core</artifactId>
-            <version>${project.version}</version>
+            <version>${parent.version}</version>
         </dependency>
         <dependency>
             <groupId>com.chuang.anarres</groupId>
-            <artifactId>office-sys</artifactId>
-            <version>${project.version}</version>
+            <artifactId>anr-rbac-starter</artifactId>
+            <version>${parent.version}</version>
         </dependency>
+
         <dependency>
             <groupId>com.chuang.tau-ceti</groupId>
             <artifactId>tau-ceti-boots</artifactId>

@@ -1,8 +1,5 @@
 server:
   port: 5250
-  servlet:
-    session:
-      timeout: 30m
 
 app:
   name: Anarres
@@ -11,7 +8,7 @@ app:
 mybatis-plus:
   type-aliases-package: com.chuang.anarres.entity
   mapper-locations: classpath*:/mapper/*.xml
-  type-enums-package: com.chuang.tauceti.support.enums,com.chuang.anarres.enums,com.chuang.anarres.office.sys.enums
+  type-enums-package: com.chuang.tauceti.support.enums,com.chuang.anarres.crud.enums
   global-config:
     db-config:
       logic-delete-value: 1

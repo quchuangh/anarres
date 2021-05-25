@@ -9,15 +9,13 @@
     <packaging>pom</packaging>
     <version>1.0.0.RELEASE</version>
     <modules>
-        <module>support</module>
         <module>core</module>
         <module>remote-api</module>
         <module>remote-provider</module>
         <module>office</module>
         <module>task</module>
-        <module>office-sys</module>
         <module>rest-app</module>
-        <module>generator</module>
+        <module>anr-base</module>
     </modules>
 
     <parent>

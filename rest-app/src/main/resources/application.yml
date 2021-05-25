@@ -1,0 +1,62 @@
+# 如果所有controller都没有命中，则使用默认的处理器，包括404，资源访问
+# spring.resources.add-mappings=true
+## 如果没有加  spring.resources.add-mappings=false（默认为true） 则加上这个也能触发 NoHandlerFoundException
+#spring.mvc.static-path-pattern=/static/**
+#spring:
+#  mvc:
+#    #如果没有相应的处理路径，不要直接跳转到错误页面，而是抛出 NoHandlerFoundException
+#    throw-exception-if-no-handler-found: true
+#  servlet:
+#    multipart:
+#      max-request-size: 50MB
+#      max-file-size: 50MB
+
+server:
+  port: 8080
+app:
+  name: Anarres
+  description: AnrDes
+
+mybatis-plus:
+  type-aliases-package: com.chuang.anarres.entity
+  mapper-locations: classpath*:/mapper/*.xml
+  type-enums-package: com.chuang.tauceti.support.enums,com.chuang.anarres.crud.enums
+  global-config:
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    log-prefix: anarres.dao.log
+
+spring:
+  datasource:
+    druid:
+      # 下面为连接池的补充设置，应用到上面所有数据源中
+      # 初始化大小，最小，最大
+      # druid 配置: https://github.com/alibaba/druid/wiki/
+      initial-size: 10
+      max-active: 20
+      min-idle: 1
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      connection-properties: druid.stat.slowSqlMillis=100
+
+      url: jdbc:mysql://127.0.0.1:3306/anarres?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
+      username: root
+      password: 123123
+      driver-class-name: com.mysql.cj.jdbc.Driver
+  application:
+    name: ${app.name}
+  profiles:
+    active: dev
+
+logging:
+  level:
+    root: info
+    anarres:
+      dao:
+        log: debug
+
+
+

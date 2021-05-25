@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chuang.anarres.crud.mapper.RelationMapper">
+    <update id="subDistance">
+        UPDATE t_relation SET DISTANCE = DISTANCE-#{distance}
+        WHERE `TYPE` = #{type}
+        and ANCESTOR in
+        <foreach item='ancestor' collection='ancestors' separator=',' open='(' close=')'>
+            #{ancestor}
+        </foreach>
+        AND DESCENDANT IN
+        <foreach item='descendant' collection='descendants' separator=',' open='(' close=')'>
+            #{descendant}
+        </foreach>
+        <if test='condition1 != null'>
+            AND ADDITIONAL_CONDITION_1 = #{condition1}
+        </if>
+
+        <if test='condition2 != null'>
+            AND ADDITIONAL_CONDITION_2 = #{condition2}
+        </if>
+    </update>
+</mapper>
