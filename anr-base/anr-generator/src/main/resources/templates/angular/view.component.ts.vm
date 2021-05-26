@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NzModalRef } from 'ng-zorro-antd/modal';
 import { SFSchema } from '@delon/form';
+import { NzModalRef } from 'ng-zorro-antd/modal';
 
 @Component({
     selector: 'app-view-${cfg.table.angularCompSelectorName}',
@@ -18,7 +18,7 @@ export class ${cfg.table.angularCompClassName}ViewComponent implements OnInit {
         #if(${field.propertyType.equalsIgnoreCase("boolean")})
             ${field.propertyName}: {
                 type: 'boolean', title: '${field.comment}',
-                enum: [{label: '是', value: true,}, {label: '否', value: false}],
+                enum: [{label: '是', value: true}, {label: '否', value: false}],
                 default: true,
                 readOnly: true,
                 ui: {placeholder: '是否启用', widget: 'select'}
@@ -91,7 +91,7 @@ export class ${cfg.table.angularCompClassName}ViewComponent implements OnInit {
 
     }
 
-    close() {
+    close(): void {
         this.modal.destroy();
     }
 }

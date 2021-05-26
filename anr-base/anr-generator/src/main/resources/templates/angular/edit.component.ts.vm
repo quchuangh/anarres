@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { SFSchema } from '@delon/form';
+import { _HttpClient } from '@delon/theme';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalRef } from 'ng-zorro-antd/modal';
-import { _HttpClient } from '@delon/theme';
-import { SFSchema } from '@delon/form';
 
 @Component({
     selector: 'app-edit-${cfg.table.angularCompSelectorName}',
@@ -22,7 +22,7 @@ export class ${cfg.table.angularCompClassName}EditComponent implements OnInit {
         #if(${field.propertyType.equalsIgnoreCase("boolean")})
             ${field.propertyName}: {
                 type: 'boolean', title: '${field.comment}',
-                enum: [{label: '是', value: true,}, {label: '否', value: false}],
+                enum: [{label: '是', value: true}, {label: '否', value: false}],
                 default: true,
                 ui: {placeholder: '是否启用', widget: 'select'}
             },
@@ -72,7 +72,7 @@ export class ${cfg.table.angularCompClassName}EditComponent implements OnInit {
             ${field.propertyName}: {
                 type: 'array',
                 title: '${field.comment}',
-                enum: [{label: 'v0', value: 0,}, {label: 'v1', value: 1}],
+                enum: [{label: 'v0', value: 0}, {label: 'v1', value: 1}],
                 default: 0,
                 ui: {placeholder: '${field.comment}', widget: 'select'}
             },
@@ -98,14 +98,14 @@ export class ${cfg.table.angularCompClassName}EditComponent implements OnInit {
 
     }
 
-    save(value: any) {
+    save(value: any): void {
         this.http.post(`${cfg.table.angularApiPath}/update`, value).subscribe(res => {
             this.msgSrv.success('修改成功');
             this.modal.close(res);
         });
     }
 
-    close() {
+    close(): void {
         this.modal.destroy();
     }
 }
