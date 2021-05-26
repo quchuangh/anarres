@@ -1,6 +1,4 @@
 import { GridOptions, GridReadyEvent, ICellRendererParams } from '@ag-grid-community/core';
-import { NzMessageService } from 'ng-zorro-antd/message';
-import { NzModalService } from 'ng-zorro-antd/modal';
 import { RowNode } from '@ag-grid-community/core/dist/cjs/entities/rowNode';
 import { FirstDataRenderedEvent } from '@ag-grid-community/core/dist/cjs/events';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -13,9 +11,11 @@ import {
     IFilter,
     IGridDataSource,
     NgxGridTableComponent,
-    NgxGridTableConstants
+    NgxGridTableConstants,
+    SfQueryFormComponent
 } from '@shared';
-import { SfQueryFormComponent } from '../../../shared/components/ngx-grid-table/sf-query-form/sf-query-form.component';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { DataSourceUtils } from '../../DataSourceUtils';
 import { ${cfg.table.angularCompClassName}CreateComponent } from './modal/create.component';
 import { ${cfg.table.angularCompClassName}EditComponent } from './modal/edit.component';
