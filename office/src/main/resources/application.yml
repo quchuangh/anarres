@@ -38,7 +38,10 @@ spring:
     name: ${app.name}
   profiles:
     active: dev
-
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
 
 shiro:
   jwt:
@@ -51,9 +54,10 @@ shiro:
     - /sys/i18n/client/**
     - /sys/app-info
     - /test/**
+    - /static/**
+    - /druid/**
+    - /.well-known/acme-challenge
+
 logging:
   level:
     root: info
-    anarres:
-      dao:
-        log: debug
