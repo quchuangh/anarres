@@ -8,4 +8,3 @@ logging:
         http: debug
         coyote:
           http11: debug
-

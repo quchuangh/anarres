@@ -53,7 +53,7 @@ public class LocalGenerator {
                 .jdbcUrl("jdbc:mysql://127.0.0.1:3306/anarres?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT")
                 .jdbcUsername("root")
                 .jdbcPassword("123123")
-                .rootPackage("com.chuang.anarres.office")
+                .rootPackage("com.chuang.anarres.gen")
                 .nameConvert(GenType.ENTITY, "%s")// 相加XXXXEntity后缀,填入 %sEntity
 
                 .tablePrefix("t_", "sys_") //表前缀，生成的对象都会去掉前缀
