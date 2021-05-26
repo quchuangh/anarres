@@ -1,6 +1,7 @@
 package com.chuang.anarres.rbac.controller;
 
 
+import com.chuang.anarres.crud.service.IRoleAbilityService;
 import com.chuang.anarres.rbac.controller.basic.ICrudController;
 import com.chuang.anarres.crud.entity.Ability;
 import com.chuang.anarres.rbac.model.co.AbilityCO;
@@ -34,6 +35,7 @@ import java.util.stream.Collectors;
 public class AbilityController implements ICrudController<AbilityCO, AbilityRO, AbilityUO, Ability, IAbilityService> {
 
     @Resource private IAbilityService abilityService;
+    @Resource private IRoleAbilityService roleAbilityService;
 
     @PostMapping("/move")
     @ApiOperation("移动菜单")
@@ -57,8 +59,13 @@ public class AbilityController implements ICrudController<AbilityCO, AbilityRO, 
     @ResponseBody
     public Result<?> create(@RequestBody @ApiParam @Valid AbilityCO co) {
         Ability entity = ConvertKit.toBean(co, Ability::new);
-        return Result.whether(service().save(entity))
-                .data(ConvertKit.toBean(entity, AbilityRO::new));
+        boolean success = abilityService.save(entity);
+        if(success) {
+            roleAbilityService.addAdminRoleAbility(entity.getId());
+            return Result.success(ConvertKit.toBean(entity, AbilityRO::new));
+        } else {
+            return Result.fail("");
+        }
     }
 
     @Override

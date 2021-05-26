@@ -23,6 +23,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
         basePackages= {"com.chuang.anarres"},
         markerInterface = BaseMapper.class
 )
+@PropertySource({
+        "classpath:application-core.properties",
+})
 public class CoreConfiguration {
     @Bean
     public static PropertySourcesPlaceholderConfigurer

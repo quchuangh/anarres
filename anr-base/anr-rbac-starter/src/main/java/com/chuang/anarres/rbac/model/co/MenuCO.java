@@ -53,7 +53,6 @@ public class MenuCO {
     private Boolean reuse;
 
     @ApiModelProperty(value = "图标", required = true)
-    @NotBlank
     private String icon;
 
     @ApiModelProperty(value = "ACL")
