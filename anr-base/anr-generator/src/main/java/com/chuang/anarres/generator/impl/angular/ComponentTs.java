@@ -18,7 +18,8 @@ public class ComponentTs extends AngularComponentGenerator {
 
     @Override
     public String outputFile(GenConfig config, TableInfo info) {
-        return "/a-makes/angular/routes/" + info.getName() + "/" + info.getName() + ".component.ts";
+        String fileName = tableNameWithoutPrefix(config, info).replaceAll("_", "-").toLowerCase();
+        return "/a-makes/angular/routes/" + fileName + "/" + fileName + ".component.ts";
     }
 
 }
