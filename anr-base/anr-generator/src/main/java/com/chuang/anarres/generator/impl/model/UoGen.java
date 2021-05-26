@@ -34,6 +34,6 @@ public class UoGen implements JavaGenerator {
 
     @Override
     public String pkg(GenConfig genConfig, TableInfo info) {
-        return "com.chuang.anarres.rbac.model.uo";
+        return "com.chuang.anarres.model.uo";
     }
 }

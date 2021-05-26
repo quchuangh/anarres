@@ -35,6 +35,6 @@ public class CoGen implements JavaGenerator {
 
     @Override
     public String pkg(GenConfig genConfig, TableInfo info) {
-        return "com.chuang.anarres.rbac.model.co";
+        return "com.chuang.anarres.model.co";
     }
 }

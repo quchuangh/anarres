@@ -35,6 +35,6 @@ public class RoGen implements JavaGenerator {
 
     @Override
     public String pkg(GenConfig genConfig, TableInfo info) {
-        return "com.chuang.anarres.rbac.model.ro";
+        return "com.chuang.anarres.model.ro";
     }
 }
